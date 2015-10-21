@@ -75,7 +75,7 @@ public class LocationTest  {
     Postconditions: None expected
     Expected Output: NPE
     */
-    @Test //(expected = NullPointerException.class)// It will give NPE
+    @Test (expected = NullPointerException.class)// It will give NPE
     public void testLocationWithNullValue(){
         Location temp = test_object;
         test_object = null;
