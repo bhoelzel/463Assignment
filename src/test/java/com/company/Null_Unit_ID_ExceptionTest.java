@@ -14,7 +14,7 @@ Test Case ID: 8.01
 Purpose: Test default exception
 Preconditions: Object exist
 Postconditions: Object exist
-Expected Output: Object throws super's exception message
+Expected Output: Object throws null message
 */
 
     //public Null_Object_Exception(String msg)

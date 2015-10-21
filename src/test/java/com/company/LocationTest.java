@@ -1,5 +1,15 @@
 package com.company;
 
+/*
+
+1. testing exceptions
+2. test constructor before setter
+3. test getting bad values when fields are private
+
+Pre-req should include any pre tested units and methods?
+
+ */
+
 import com.company.Location;
 import com.company.Null_Object_Exception;
 import junit.framework.TestCase;
@@ -15,7 +25,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * Created by benhoelzel on 10/15/15.
  */
 public class LocationTest  {
-    //Test variables
+    //Test parameters
     float good_latitude = -80.0f;
     float good_longitude = -100.0f;
     Location test_object;
@@ -65,7 +75,7 @@ public class LocationTest  {
     Postconditions: None expected
     Expected Output: NPE
     */
-    @Test (expected = NullPointerException.class)//Null_Object_Exception.class )//Is this correct?? It will give NPE
+    @Test (expected = NullPointerException.class)// It will give NPE
     public void testLocationWithNullValue(){
         Location temp = test_object;
         test_object = null;
@@ -236,14 +246,14 @@ public class LocationTest  {
 
     /*
     Test Case ID: 9.--
-    Purpose: Test good New_Logtitude value. i.e. New_latitude = -1188.0000000000, New_longitude = -175.0000000000
+    Purpose: Test good New_Longitude value. i.e. New_latitude = -1188.0000000000, New_longitude = -175.0000000000
     Preconditions: None
     Postconditions: Location object to have new values assigend for Latitude and Longitude
     Expected Output: Null Object Exception
     */
     @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
     public void testBadLatitudeForConstructor () {
-        Location test = new Location(-80000.0f, -100.0f);
+        Location test = new Location(-1188.0000000000f, -175.00000000000f);
 
     }
 
