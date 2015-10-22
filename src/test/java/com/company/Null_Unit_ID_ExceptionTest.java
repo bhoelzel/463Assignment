@@ -14,7 +14,7 @@ Test Case ID: 8.01
 Purpose: Test default exception
 Preconditions: Object exist
 Postconditions: Object exist
-Expected Output: Object throws null message
+Expected Output: Throws null message
 */
 
     //public Null_Object_Exception(String msg)
@@ -23,7 +23,7 @@ Test Case ID: 8.02
 Purpose: Test passing string message to object
 Preconditions: Object exist
 Postconditions: None expected
-Expected Output: Object throws inputed exception message
+Expected Output: Throws inputed exception message
 */
 
 }

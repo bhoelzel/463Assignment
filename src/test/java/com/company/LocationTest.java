@@ -45,7 +45,7 @@ public class LocationTest  {
 
     //Testing getter method
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.02
     Purpose: Test when object has good Latitude value
     Preconditions: Test_Object has been initialised with default test values
     Postconditions: None expected
@@ -57,7 +57,7 @@ public class LocationTest  {
     }
 
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.03
     Purpose: Test when object has good Longitude value
     Preconditions: Test_Object has been initialised with default test values
     Postconditions: None expected
@@ -69,7 +69,7 @@ public class LocationTest  {
     }
 
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.04
     Purpose: Test when object = Null value
     Preconditions: test_object is set to null
     Postconditions: None expected
@@ -86,7 +86,7 @@ public class LocationTest  {
 
     //Testing the setter method
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.05
     Purpose: Test change to good location. New_latitude = 80.0, New_longitude = 100.0
     Preconditions: Object has been initialised
     Postconditions: Location object to have new values assigned for Latitude and Longitude
@@ -98,7 +98,7 @@ public class LocationTest  {
     }
 
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.06
     Purpose: Test good location that has larger precision. New_latitude = 75.123456789, NewLongitude = 10.00000000000001
     Preconditions: Object has been initialised with good values
     Postconditions: Location object to have new values assigend for Latitude and Longitude
@@ -110,7 +110,7 @@ public class LocationTest  {
     }
 
     /*
-    TTest Case ID: 9.--
+    TTest Case ID: 9.07
     Purpose: Test good int value location. New_latitude = -80, NewLongitude = 10
     Preconditions: Object has been initialised with good values
     Postconditions: Location object to have new values assigend for Latitude and Longitude
@@ -122,7 +122,7 @@ public class LocationTest  {
         assertThat(test_object.Current_Latitude(), is(equalTo(-80.0f)));
     }
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.08
     Purpose: Test out of bound location. i.e. New_latitude = -91, NewLongitude = 181
     Preconditions:  Object has been initialised with good values
     Postconditions: None expected
@@ -137,7 +137,7 @@ public class LocationTest  {
     }
 
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.09
     Purpose: Test border locations. i.e. New_latitude = -90.0000000000, NewLongitude = 180.0000000000
     Preconditions: Object has been initialised with good values
     Postconditions: Location object to have new values assigend for Latitude and Longitude
@@ -153,7 +153,7 @@ public class LocationTest  {
     }
 
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.10
     Purpose: Test good New_latitude value, bad longitude value. i.e. New_latitude = -88.0000000000, New_longitude = -1280.0000000000
     Preconditions: Object has been initialised with good values
     Postconditions: Location object to have new values assigend for Latitude and Longitude
@@ -161,12 +161,12 @@ public class LocationTest  {
     */
     @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
     public void testBadLongitude() {
-        test_object.Set_Location(good_latitude,good_longitude);
+        test_object.Set_Location(good_latitude, good_longitude);
         test_object.Set_Location(-80.0f, 1000.0f);
     }
 
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.11
     Purpose: Test bad New_Longitude, good New_Longitude value. i.e. New_latitude = -1188.0000000000, New_longitude = -175.0000000000
     Preconditions: None
     Postconditions: Location object to have new values assigend for Latitude and Longitude
@@ -181,7 +181,7 @@ public class LocationTest  {
 
     //Further testing constructor
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.12
     Purpose: Test good location that has larger precision. New_latitude = 75.123456789, NewLongitude = 10.00000000000001
     Preconditions: None
     Postconditions: Location object to have new values assigend for Latitude and Longitude
@@ -193,7 +193,7 @@ public class LocationTest  {
     }
 
     /*
-    TTest Case ID: 9.--
+    TTest Case ID: 9.13
     Purpose: Test good int value location. New_latitude = -80, NewLongitude = 10
     Preconditions: None
     Postconditions: Location object to have new values assigend for Latitude and Longitude
@@ -207,7 +207,7 @@ public class LocationTest  {
     }
 
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.14
     Purpose: Test out of bound location. i.e. New_latitude = -91, NewLongitude = 181
     Preconditions: None
     Postconditions: None expected
@@ -221,7 +221,7 @@ public class LocationTest  {
     }
 
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.15
     Purpose: Test border locations. i.e. New_latitude = -90.0000000000, NewLongitude = 180.0000000000
     Preconditions: None
     Postconditions: Location object to have new values assigend for Latitude and Longitude
@@ -232,7 +232,7 @@ public class LocationTest  {
         Location test = new Location(-90.0f, 180.0f);
     }
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.16
     Purpose: Test good New_latitude value, bad longitude value. i.e. New_latitude = -88.0000000000, New_longitude = -1280.0000000000
     Preconditions: None
     Postconditions: Location object to have new values assigend for Latitude and Longitude
@@ -245,7 +245,7 @@ public class LocationTest  {
     }
 
     /*
-    Test Case ID: 9.--
+    Test Case ID: 9.17
     Purpose: Test good New_Longitude value. i.e. New_latitude = -1188.0000000000, New_longitude = -175.0000000000
     Preconditions: None
     Postconditions: Location object to have new values assigend for Latitude and Longitude
@@ -257,6 +257,30 @@ public class LocationTest  {
 
     }
 
+    /*
+    Test Case ID: 9.18
+    Purpose: Test with empty paramater list
+    Preconditions: None
+    Postconditions: None expected
+    Expected Output: Compiler Error
+    */
+//    @Test(expected = Null_Object_Exception.class)
+//    public void testEmptyParamterList(){
+//        Location test = new Location();
+//    }
+
+    /*
+    Test Case ID: 9.19
+    Purpose: Test with string value for input. i.e. "Ninety"...
+    Preconditions: None
+    Postconditions: None expected
+    Expected Output: Compiler error
+    */
+//    @Test(expected = Null_Object_Exception.class)
+//    public void testEmptyParamterList("Ninety","Eighty"){
+//        Location test = new Location();
+//    }
+
     //tearDown used to close the connection or clean up activities
     public void tearDown() {
         test_object = null;
@@ -267,21 +291,8 @@ public class LocationTest  {
 
 
 
-/*
-Test Case ID: 9.--
-Purpose: Test with empty paramater list
-Preconditions: None
-Postconditions: None expected
-Expected Output: Null Object Exception
-*/
 
-/*
-Test Case ID: 9.--
-Purpose: Test with string value for input. i.e. "Ninety"...
-Preconditions: None
-Postconditions: None expected
-Expected Output: Compile error
-*/
+
 
 
 
