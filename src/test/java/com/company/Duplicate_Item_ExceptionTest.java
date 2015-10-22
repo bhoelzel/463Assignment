@@ -42,7 +42,7 @@ public class Duplicate_Item_ExceptionTest {
     public void testMessageException(){
         Duplicate_Item_Exception testItem = new Duplicate_Item_Exception("Exception in test");
         //System.out.print( testItem.getMessage() );
-        assertThat("Exceptionin test", is(equalTo(testItem.getMessage())));
+        assertThat("Exception in test", is(equalTo(testItem.getMessage())));
 
     }
 
