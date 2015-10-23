@@ -16,7 +16,7 @@ public class Duplicate_Item_ExceptionTest {
 
     //public Duplicate_Item_Exception()
     /*
-    Test Case ID: 8.01
+    Test Case ID: 1.01
     Purpose: Test default exception
     Preconditions: Object exist
     Postconditions: Object exist
@@ -32,7 +32,7 @@ public class Duplicate_Item_ExceptionTest {
     }
 
     /*
-    Test Case ID: 8.02
+    Test Case ID: 1.02
     Purpose: Test passing string message to object
     Preconditions: Object exist
     Postconditions: None expected

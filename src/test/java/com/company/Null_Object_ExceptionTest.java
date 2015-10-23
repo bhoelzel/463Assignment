@@ -9,7 +9,7 @@ public class Null_Object_ExceptionTest {
 
     // public Null_Object_Exception()
 /*
-Test Case ID: 7.01
+Test Case ID: 2.01
 Purpose: Test default exception
 Preconditions: Object exist
 Postconditions: Object exist
@@ -17,7 +17,7 @@ Expected Output: Throws null exception message
 */
     //public Null_Object_Exception(String msg)
 /*
-Test Case ID: 7.02
+Test Case ID: 2.02
 Purpose: Test passing string message to object
 Preconditions: Object exist
 Postconditions: None expected
@@ -25,7 +25,7 @@ Expected Output: Throws inputed exception message
 */
     // public Null_Object_Exception (Float Latitude, Float Longitude)
  /*
-Test Case ID: 7.03
+Test Case ID: 2.03
 Purpose: Test passing with bad Latitude value
 Preconditions: Object exist
 Postconditions: None expected
@@ -33,7 +33,7 @@ Expected Output: Throws the erroneous value message: "Location " + Latitude + ",
 */
 
 /*
- Test Case ID: 7.04
+ Test Case ID: 2.04
  Purpose: Test passing with bad Longitude value
  Preconditions: Object exist
  Postconditions: None expected
