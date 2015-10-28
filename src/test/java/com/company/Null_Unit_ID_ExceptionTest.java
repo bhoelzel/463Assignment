@@ -13,8 +13,7 @@ public class Null_Unit_ID_ExceptionTest {
 Test Case ID: 3.01
 Purpose: Test default exception
 Preconditions: Object exist
-Postconditions: Object exist
-Expected Output: Throws null message
+Expected Result: Throws null message
 */
 
     //public Null_Object_Exception(String msg)
@@ -22,8 +21,7 @@ Expected Output: Throws null message
 Test Case ID: 3.02
 Purpose: Test passing string message to object
 Preconditions: Object exist
-Postconditions: None expected
-Expected Output: Throws inputed exception message
+Expected Result: Throws inputed exception message
 */
 
 }

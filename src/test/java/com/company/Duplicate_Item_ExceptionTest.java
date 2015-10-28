@@ -19,8 +19,7 @@ public class Duplicate_Item_ExceptionTest {
     Test Case ID: 1.01
     Purpose: Test default exception
     Preconditions: Object exist
-    Postconditions: Object exist
-    Expected Output: Throws no exception message
+    Expected Result: Throws no exception message
     */
     @Test
     public void testDefaultException(){
@@ -35,8 +34,7 @@ public class Duplicate_Item_ExceptionTest {
     Test Case ID: 1.02
     Purpose: Test passing string message to object
     Preconditions: Object exist
-    Postconditions: None expected
-    Expected Output: Throws inputted exception message
+    Expected Result: Throws inputted exception message
     */
     @Test
     public void testMessageException(){

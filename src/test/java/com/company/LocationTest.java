@@ -35,8 +35,7 @@ public class LocationTest  {
     Test Case ID: 4.01
     Purpose: Test initialise with good location. New_latitude = -80.0, New_longitude = -100.0
     Preconditions: None
-    Postconditions: Location object to have new values assigned for Latitude and Longitude
-    Expected Output: None expected
+    Expected Result: Location object to have new values assigned for Latitude and Longitude
     */
     @Before
     public void setUp(){
@@ -48,8 +47,7 @@ public class LocationTest  {
     Test Case ID: 4.02
     Purpose: Test when object has good Latitude value
     Preconditions: Test_Object has been initialised with default test values
-    Postconditions: None expected
-    Expected Output: None
+    Expected result: Return the proper latitude value
     */
     @Test
     public void testLatitudeGetter(){
@@ -60,8 +58,8 @@ public class LocationTest  {
     Test Case ID: 4.03
     Purpose: Test when object has good Longitude value
     Preconditions: Test_Object has been initialised with default test values
-    Postconditions: None expected
-    Expected Output: None
+    Expected result: Return the proper longitude value
+
     */
     @Test
     public void testLongitudeGetter(){
@@ -72,8 +70,7 @@ public class LocationTest  {
     Test Case ID: 4.04
     Purpose: Test when object = Null value
     Preconditions: test_object is set to null
-    Postconditions: None expected
-    Expected Output: NPE
+    Expected Result: Null Pointer Exception
     */
     @Test (expected = NullPointerException.class)// It will give NPE
     public void testLocationWithNullValue(){
@@ -89,8 +86,7 @@ public class LocationTest  {
     Test Case ID: 4.05
     Purpose: Test change to good location. New_latitude = 80.0, New_longitude = 100.0
     Preconditions: Object has been initialised
-    Postconditions: Location object to have new values assigned for Latitude and Longitude
-    Expected Output: None expected
+    Expected Result: Location object to have new values assigned for Latitude and Longitude
     */
     @Test
     public void testChangingLatitude(){
@@ -101,8 +97,7 @@ public class LocationTest  {
     Test Case ID: 4.06
     Purpose: Test good location that has larger precision. New_latitude = 75.123456789, NewLongitude = 10.00000000000001
     Preconditions: Object has been initialised with good values
-    Postconditions: Location object to have new values assigend for Latitude and Longitude
-    Expected Output: None expected
+    Expected Result: Location object to have new values assigend for Latitude and Longitude
     */
     @Test
     public void testValidLatitudeLongitudeLargePrecision() {
@@ -113,8 +108,7 @@ public class LocationTest  {
     TTest Case ID: 4.07
     Purpose: Test good int value location. New_latitude = -80, NewLongitude = 10
     Preconditions: Object has been initialised with good values
-    Postconditions: Location object to have new values assigend for Latitude and Longitude
-    Expected Output: None expected
+    Expected Result: Location object to have new values assigend for Latitude and Longitude
     */
     @Test
     public void testValidLatitudeLongitudeWithInt() {
@@ -125,8 +119,7 @@ public class LocationTest  {
     Test Case ID: 4.08
     Purpose: Test out of bound location. i.e. New_latitude = -91, NewLongitude = 181
     Preconditions:  Object has been initialised with good values
-    Postconditions: None expected
-    Expected Output: Null Object Exception
+    Expected Result: Null Object Exception
     */
     @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
     public void testOutOfBoundLatitudeLongitude() {
@@ -140,8 +133,7 @@ public class LocationTest  {
     Test Case ID: 4.09
     Purpose: Test border locations. i.e. New_latitude = -90.0000000000, NewLongitude = 180.0000000000
     Preconditions: Object has been initialised with good values
-    Postconditions: Location object to have new values assigend for Latitude and Longitude
-    Expected Output: None
+    Expected Output: Location object to have new values assigend for Latitude and Longitude
     */
     @Test
     public void testBoarderLatittudeLongitude() {
@@ -156,8 +148,7 @@ public class LocationTest  {
     Test Case ID: 4.10
     Purpose: Test good New_latitude value, bad longitude value. i.e. New_latitude = -88.0000000000, New_longitude = -1280.0000000000
     Preconditions: Object has been initialised with good values
-    Postconditions: Location object to have new values assigend for Latitude and Longitude
-    Expected Output: Null Object Exception
+    Expected Result: Null Object Exception
     */
     @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
     public void testBadLongitude() {
@@ -169,8 +160,7 @@ public class LocationTest  {
     Test Case ID: 4.11
     Purpose: Test bad New_Longitude, good New_Longitude value. i.e. New_latitude = -1188.0000000000, New_longitude = -175.0000000000
     Preconditions: None
-    Postconditions: Location object to have new values assigend for Latitude and Longitude
-    Expected Output: Null Object Exception
+    Expected Result: Null Object Exception
     */
     @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
     public void testBadLatitude() {
@@ -184,8 +174,7 @@ public class LocationTest  {
     Test Case ID: 4.12
     Purpose: Test good location that has larger precision. New_latitude = 75.123456789, NewLongitude = 10.00000000000001
     Preconditions: None
-    Postconditions: Location object to have new values assigend for Latitude and Longitude
-    Expected Output: None expected
+    Expected Output: Location object created with new values assigend for Latitude and Longitude
     */
     @Test
     public void testValidLatitudeLongitudeLargePrecisionConstructor() {
@@ -196,8 +185,7 @@ public class LocationTest  {
     TTest Case ID: 4.13
     Purpose: Test good int value location. New_latitude = -80, NewLongitude = 10
     Preconditions: None
-    Postconditions: Location object to have new values assigend for Latitude and Longitude
-    Expected Output: None expected
+    Expected Result: Location object created with new values assigend for Latitude and Longitude
     */
     @Test
     public void testValidLatitudeLongitudeWithIntConstructor() {
@@ -210,8 +198,7 @@ public class LocationTest  {
     Test Case ID: 4.14
     Purpose: Test out of bound location. i.e. New_latitude = -91, NewLongitude = 181
     Preconditions: None
-    Postconditions: None expected
-    Expected Output: Null Object Exception
+    Expected Result: Null Object Exception
     */
     @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
     public void testOutOfBoundLatitudeLongitudeConstructor() {
@@ -224,8 +211,7 @@ public class LocationTest  {
     Test Case ID: 4.15
     Purpose: Test border locations. i.e. New_latitude = -90.0000000000, NewLongitude = 180.0000000000
     Preconditions: None
-    Postconditions: Location object to have new values assigend for Latitude and Longitude
-    Expected Output: None
+    Expected Result: Location object created with new values assigend for Latitude and Longitude
     */
     @Test
     public void testBoarderLatittudeLongitudeConstructor() {
@@ -235,8 +221,7 @@ public class LocationTest  {
     Test Case ID: 4.16
     Purpose: Test good New_latitude value, bad longitude value. i.e. New_latitude = -88.0000000000, New_longitude = -1280.0000000000
     Preconditions: None
-    Postconditions: Location object to have new values assigend for Latitude and Longitude
-    Expected Output: Null Object Exception
+    Expected Result: Null Object Exception
     */
     @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
     public void testBadLongitudeForConstructor () {
@@ -248,8 +233,7 @@ public class LocationTest  {
     Test Case ID: 4.17
     Purpose: Test good New_Longitude value. i.e. New_latitude = -1188.0000000000, New_longitude = -175.0000000000
     Preconditions: None
-    Postconditions: Location object to have new values assigend for Latitude and Longitude
-    Expected Output: Null Object Exception
+    Expected Result: Null Object Exception
     */
     @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
     public void testBadLatitudeForConstructor () {
@@ -261,8 +245,7 @@ public class LocationTest  {
     Test Case ID: 4.18
     Purpose: Test with empty paramater list
     Preconditions: None
-    Postconditions: None expected
-    Expected Output: Compiler Error
+    Expected Result: Compiler Error
     */
 //    @Test(expected = Null_Object_Exception.class)
 //    public void testEmptyParamterList(){
@@ -273,8 +256,7 @@ public class LocationTest  {
     Test Case ID: 4.19
     Purpose: Test with string value for input. i.e. "Ninety"...
     Preconditions: None
-    Postconditions: None expected
-    Expected Output: Compiler error
+    Expected Result: Compiler error
     */
 //    @Test(expected = Null_Object_Exception.class)
 //    public void testEmptyParamterList("Ninety","Eighty"){
