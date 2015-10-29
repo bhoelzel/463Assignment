@@ -1,11 +1,12 @@
+/*******************************************************************************************************
+ *       Location Test
+ *       Description of test sequence:
+ *       Positive path constructor test
+ *       Positive / negative getter tests
+ *       Positive / negative setter tests
+ *       Positive / negative constructor tests
+ *******************************************************************************************************/
 package com.company;
-
-/*
-
-    //Test constructor
-
-
- */
 
 import com.company.Location;
 import com.company.Null_Object_Exception;
@@ -18,21 +19,13 @@ import org.junit.rules.ExpectedException;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-/*
- *
- *
- *
- *
- *
- *
- */
 public class LocationTest  {
-    //Test parameters
+    //Test parameters used in tests
     float good_latitude = -80.0f;
     float good_longitude = -100.0f;
     Location test_object;
 
-    //Test constructor
+    //Positive path constructor test
     /*
     Test Case ID: 4.01
     Purpose: Test initialise with good location. New_latitude = -80.0, New_longitude = -100.0
@@ -44,7 +37,7 @@ public class LocationTest  {
         test_object = new Location(good_latitude, good_longitude);
     }
 
-    //Testing getter method
+    //Positive / negative getter tests
     /*
     Test Case ID: 4.02
     Purpose: Test when object has good Latitude value
@@ -83,7 +76,7 @@ public class LocationTest  {
         test_object = temp;
     }
 
-    //Testing the setter method
+    //Positive / negative setter tests
     /*
     Test Case ID: 4.05
     Purpose: Test change to good location. New_latitude = 80.0, New_longitude = 100.0
@@ -115,7 +108,7 @@ public class LocationTest  {
     @Test
     public void testValidLatitudeLongitudeWithInt() {
         test_object.Set_Location(-80, 10.0f);
-        assertThat(test_object.Current_Latitude(), is(equalTo(-8.0f)));
+        assertThat(test_object.Current_Latitude(), is(equalTo(-80.0f)));
     }
     /*
     Test Case ID: 4.08
@@ -171,7 +164,7 @@ public class LocationTest  {
 
     }
 
-    //Further testing constructor
+    //Positive / negative constructor tests
     /*
     Test Case ID: 4.12
     Purpose: Test good location that has larger precision. New_latitude = 75.123456789, NewLongitude = 10.00000000000001
