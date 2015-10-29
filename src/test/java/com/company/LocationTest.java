@@ -48,7 +48,7 @@ public class LocationTest  {
     */
     @Test
     public void testLatitudeGetter(){
-        assertThat(test_object.Current_Latitude(), is(equalTo(good_latitude-1)));
+        assertThat(test_object.Current_Latitude(), is(equalTo(good_latitude)));
     }
 
     /*
