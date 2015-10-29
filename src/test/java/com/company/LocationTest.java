@@ -18,6 +18,7 @@ import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 public class LocationTest  {
     //Test parameters used in tests
@@ -46,7 +47,8 @@ public class LocationTest  {
     */
     @Test
     public void testLatitudeGetter(){
-        assertThat(test_object.Current_Latitude(), is(equalTo(good_latitude)));
+        assertThat(test_object.Current_Latitude(), is(equalTo(good_latitude-1)));
+        //assertEquals(good_latitude, test_object.Current_Latitude(),test_object.Current_Latitude()-good_latitude );
     }
 
     /*
@@ -54,7 +56,6 @@ public class LocationTest  {
     Purpose: Test when object has good Longitude value
     Preconditions: Test_Object has been initialised with default test values
     Expected result: Return the proper longitude value
-
     */
     @Test
     public void testLongitudeGetter(){

@@ -15,7 +15,8 @@ import java.util.HashMap;
  * Exceptions Thrown:  None
  */
 public class Response_Unit_Manager {
-    
+
+    //class field
     private static HashMap<String, Response_Unit> Response_Unit_DB =
             new HashMap<> ();
     

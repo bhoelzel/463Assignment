@@ -1,4 +1,9 @@
-
+/*******************************************************************************************************
+ *       Duplicate_Item_Exception Test
+ *       Description of test sequence:
+ *       Positive path default message test
+ *       Positive path string message test
+ *******************************************************************************************************/
 package com.company;
 
 import com.company.Duplicate_Item_Exception;
@@ -7,14 +12,8 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-
-/**
- * Created by benhoelzel on 10/16/15.
- */
 public class Duplicate_Item_ExceptionTest {
 
-
-    //public Duplicate_Item_Exception()
     /*
     Test Case ID: 1.01
     Purpose: Test default exception
