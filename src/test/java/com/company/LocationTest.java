@@ -2,11 +2,8 @@ package com.company;
 
 /*
 
-1. testing exceptions
-2. test constructor before setter
-3. test getting bad values when fields are private
+    //Test constructor
 
-Pre-req should include any pre tested units and methods?
 
  */
 
@@ -21,8 +18,13 @@ import org.junit.rules.ExpectedException;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * Created by benhoelzel on 10/15/15.
+/*
+ *
+ *
+ *
+ *
+ *
+ *
  */
 public class LocationTest  {
     //Test parameters
@@ -113,7 +115,7 @@ public class LocationTest  {
     @Test
     public void testValidLatitudeLongitudeWithInt() {
         test_object.Set_Location(-80, 10.0f);
-        assertThat(test_object.Current_Latitude(), is(equalTo(-80.0f)));
+        assertThat(test_object.Current_Latitude(), is(equalTo(-8.0f)));
     }
     /*
     Test Case ID: 4.08
