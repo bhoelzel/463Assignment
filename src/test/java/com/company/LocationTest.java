@@ -34,6 +34,7 @@ public class LocationTest  {
     Expected Result: Location object to have new values assigned for Latitude and Longitude
     */
     @Before
+    @Test
     public void setUp(){
         test_object = new Location(good_latitude, good_longitude);
     }
@@ -48,7 +49,6 @@ public class LocationTest  {
     @Test
     public void testLatitudeGetter(){
         assertThat(test_object.Current_Latitude(), is(equalTo(good_latitude-1)));
-        //assertEquals(good_latitude, test_object.Current_Latitude(),test_object.Current_Latitude()-good_latitude );
     }
 
     /*
