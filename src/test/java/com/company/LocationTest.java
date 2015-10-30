@@ -8,17 +8,10 @@
  *******************************************************************************************************/
 package com.company;
 
-import com.company.Location;
-import com.company.Null_Object_Exception;
-import junit.framework.TestCase;
-import junit.framework.TestResult;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
 
 public class LocationTest  {
     //Test parameters used in tests
@@ -29,7 +22,7 @@ public class LocationTest  {
     //Positive path constructor test
     /*
     Test Case ID: 4.01
-    Purpose: Test initialise with good location. New_latitude = -80.0, New_longitude = -100.0
+    Purpose: Test initialise with good location.
     Preconditions: None
     Expected Result: Location object to have new values assigned for Latitude and Longitude
     */
@@ -39,10 +32,10 @@ public class LocationTest  {
         test_object = new Location(good_latitude, good_longitude);
     }
 
-    //Positive / negative getter tests
+    //Positive path getter tests
     /*
     Test Case ID: 4.02
-    Purpose: Test when object has good Latitude value
+    Purpose: Test getter when object has good Latitude value
     Preconditions: Test_Object has been initialised with default test values
     Expected result: Return the proper latitude value
     */
@@ -68,177 +61,252 @@ public class LocationTest  {
     Preconditions: test_object is set to null
     Expected Result: Null Pointer Exception
     */
-    @Test (expected = NullPointerException.class)// It will give NPE
+    @Test (expected = NullPointerException.class)
     public void testLocationWithNullValue(){
         Location temp = test_object;
         test_object = null;
-        System.out.println(test_object.Current_Latitude());
-        //assertThat(test_object, is(nullValue()));
+        test_object.Current_Latitude();
         test_object = temp;
+        temp = null;
     }
 
-    //Positive / negative setter tests
+    //Positive / negative path setter tests
     /*
     Test Case ID: 4.05
-    Purpose: Test change to good location. New_latitude = 80.0, New_longitude = 100.0
+    Purpose: Test change to good location.
     Preconditions: Object has been initialised
     Expected Result: Location object to have new values assigned for Latitude and Longitude
     */
     @Test
     public void testChangingLatitude(){
-        test_object.Set_Location(80.0f,100.0f);
+        float test_latitude = 80.0f;
+        float test_longitude = 100.0f;
+        test_object.Set_Location(test_latitude,test_longitude);
+        assertThat(test_object.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat(test_object.Current_Longitude(), is(equalTo(test_longitude)));
     }
 
     /*
     Test Case ID: 4.06
-    Purpose: Test good location that has larger precision. New_latitude = 75.123456789, NewLongitude = 10.00000000000001
+    Purpose: Test good location that has larger precision.
     Preconditions: Object has been initialised with good values
-    Expected Result: Location object to have new values assigend for Latitude and Longitude
+    Expected Result: Location object to have new values assigned for Latitude and Longitude
     */
     @Test
     public void testValidLatitudeLongitudeLargePrecision() {
-        test_object.Set_Location(75.123456789f, 10.00000000000001f);
+        float test_latitude = 75.123456789f;
+        float test_longitude = 10.00000000000001f;
+        test_object.Set_Location(test_latitude,test_longitude);
+        assertThat(test_object.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat(test_object.Current_Longitude(), is(equalTo(test_longitude)));
     }
 
     /*
     TTest Case ID: 4.07
-    Purpose: Test good int value location. New_latitude = -80, NewLongitude = 10
+    Purpose: Test good integer value location. New_latitude = -80, NewLongitude = 10
     Preconditions: Object has been initialised with good values
-    Expected Result: Location object to have new values assigend for Latitude and Longitude
+    Expected Result: Location object to have new float values assigned for Latitude and Longitude
     */
     @Test
     public void testValidLatitudeLongitudeWithInt() {
-        test_object.Set_Location(-80, 10.0f);
-        assertThat(test_object.Current_Latitude(), is(equalTo(-80.0f)));
+        int test_latitude = -80;
+        int test_longitude = 10;
+        //Java allows widening primitive conversion, it should be safe per Java
+        test_object.Set_Location(test_latitude, test_longitude);
+        //Narrow primitive conversion will lose precision, but we have none as we converted from integer and the danger is from float to double
+        assertThat(test_object.Current_Latitude(), is(equalTo((float)test_latitude)));
+        assertThat(test_object.Current_Longitude(), is(equalTo((float)test_longitude)));
     }
+
     /*
-    Test Case ID: 4.08
+    TTest Case ID: 4.08
+    Purpose: Test good double location.
+    Preconditions: Object has been initialised with good values
+    Expected Result: Location object to have new values assigned for Latitude and Longitude
+    */
+    @Test
+    public void testValidLatitudeLongitudeWithDouble() {
+        double test_latitude = -80.0000011;
+        double test_longitude = 10.0000011;
+        //Java allows narrowing primitive conversion, it may not be safe per Java!
+        test_object.Set_Location((float)test_latitude, (float)test_longitude);
+        assertThat((double)test_object.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat((double)test_object.Current_Longitude(), is(equalTo(test_longitude)));
+    }
+
+
+    /*
+    Test Case ID: 4.09
     Purpose: Test out of bound location. i.e. New_latitude = -91, NewLongitude = 181
     Preconditions:  Object has been initialised with good values
     Expected Result: Null Object Exception
     */
-    @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
+    @Test(expected = Null_Object_Exception.class)
     public void testOutOfBoundLatitudeLongitude() {
-        test_object.Set_Location(good_latitude,good_longitude);
-        test_object.Set_Location(-91.0f, 181.0f);
-//        System.out.print(test.Current_Latitude());
-//        assertThat(test.Current_Latitude(), is(equalTo(-80.0f)));
-    }
-
-    /*
-    Test Case ID: 4.09
-    Purpose: Test border locations. i.e. New_latitude = -90.0000000000, NewLongitude = 180.0000000000
-    Preconditions: Object has been initialised with good values
-    Expected Output: Location object to have new values assigend for Latitude and Longitude
-    */
-    @Test
-    public void testBoarderLatittudeLongitude() {
-
-        test_object.Set_Location(good_latitude,good_longitude);
-        test_object.Set_Location(-90.0f, 180.0f);
-        assertThat(test_object.Current_Latitude(), is(equalTo(-90.0f)));
-        assertThat(test_object.Current_Longitude(), is(equalTo(180.0f)));
+        float test_latitude = -91.0f;
+        float test_longitude = 181.0f;
+        test_object.Set_Location(test_latitude , test_longitude );
+        assertThat(test_object.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat(test_object.Current_Longitude(), is(equalTo(test_longitude)));
     }
 
     /*
     Test Case ID: 4.10
-    Purpose: Test good New_latitude value, bad longitude value. i.e. New_latitude = -88.0000000000, New_longitude = -1280.0000000000
+    Purpose: Test border locations.
     Preconditions: Object has been initialised with good values
-    Expected Result: Null Object Exception
+    Expected Output: Location object to have new values assigned for Latitude and Longitude
     */
-    @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
-    public void testBadLongitude() {
-        test_object.Set_Location(good_latitude, good_longitude);
-        test_object.Set_Location(-80.0f, 1000.0f);
+    @Test
+    public void testBoarderLatitudeLongitude() {
+        float test_latitude = -90.0f;
+        float test_longitude = 180.0f;
+        test_object.Set_Location(test_latitude, test_longitude);
+        assertThat(test_object.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat(test_object.Current_Longitude(), is(equalTo(test_longitude)));
     }
 
     /*
     Test Case ID: 4.11
-    Purpose: Test bad New_Longitude, good New_Longitude value. i.e. New_latitude = -1188.0000000000, New_longitude = -175.0000000000
+    Purpose: Test good New_latitude value, bad longitude value.
+    Preconditions: Object has been initialised with good values
+    Expected Result: Null Object Exception
+    */
+    @Test(expected = Null_Object_Exception.class)
+    public void testBadLongitude() {
+        float test_latitude = -80.0f;
+        float test_longitude = 1000.0f;
+        test_object.Set_Location(test_latitude,test_longitude);
+        assertThat(test_object.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat(test_object.Current_Longitude(), is(equalTo(test_longitude)));
+    }
+
+    /*
+    Test Case ID: 4.12
+    Purpose: Test bad New_Longitude, good New_Longitude value.
     Preconditions: None
     Expected Result: Null Object Exception
     */
-    @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
+    @Test(expected = Null_Object_Exception.class)
     public void testBadLatitude() {
-        test_object.Set_Location(good_latitude,good_longitude);
-        test_object.Set_Location(-80000.0f, -100.0f);
-
+        float test_latitude = -80000.0f;
+        float test_longitude = -100.0f;
+        test_object.Set_Location(test_latitude,test_longitude);
+        assertThat(test_object.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat(test_object.Current_Longitude(), is(equalTo(test_longitude)));
     }
 
-    //Positive / negative constructor tests
+    //Positive / negative path constructor tests
     /*
-    Test Case ID: 4.12
-    Purpose: Test good location that has larger precision. New_latitude = 75.123456789, NewLongitude = 10.00000000000001
+    Test Case ID: 4.13
+    Purpose: Test good location that has larger precision.
     Preconditions: None
     Expected Output: Location object created with new values assigend for Latitude and Longitude
     */
     @Test
     public void testValidLatitudeLongitudeLargePrecisionConstructor() {
-        Location test = new Location(75.123456789f, 10.00000000000001f);
+        float test_latitude = 75.123456789f;
+        float test_longitude = 10.00000000000001f;
+        Location test = new Location(test_latitude,test_longitude);
+        assertThat(test.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat(test.Current_Longitude(), is(equalTo(test_longitude)));
     }
 
     /*
-    TTest Case ID: 4.13
-    Purpose: Test good int value location. New_latitude = -80, NewLongitude = 10
+    TTest Case ID: 4.14
+    Purpose: Test good int value location.
     Preconditions: None
     Expected Result: Location object created with new values assigend for Latitude and Longitude
     */
     @Test
     public void testValidLatitudeLongitudeWithIntConstructor() {
-        Location test = new Location(-80, 10);
-        System.out.print(test.Current_Latitude());
-        assertThat(test.Current_Latitude(), is(equalTo(-80.0f)));
+        int test_latitude = -80;
+        int test_longitude = 10;
+        //Java allows widening primitive conversion, it should be safe per Java
+        Location test = new Location(test_latitude, test_longitude);
+        //Narrow primitive conversion will lose precision, but we have none as we converted from integer and the danger is from float to double
+        assertThat(test.Current_Latitude(), is(equalTo((float)test_latitude)));
+        assertThat(test.Current_Longitude(), is(equalTo((float)test_longitude)));
     }
 
     /*
-    Test Case ID: 4.14
-    Purpose: Test out of bound location. i.e. New_latitude = -91, NewLongitude = 181
+    TTest Case ID: 4.15
+    Purpose: Test good double location during construction.
+    Preconditions: Object has been initialised with good values
+    Expected Result: Location object to have new values assigned for Latitude and Longitude
+    */
+    @Test
+    public void testValidLatitudeLongitudeWithDoubleConstructor() {
+        double test_latitude = -12.0000011;
+        double test_longitude = 10.0000011;
+        //Java allows narrowing primitive conversion, it may not be safe per Java!
+        Location test = new Location((float)test_latitude, (float)test_longitude);
+        assertThat((double)test.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat((double)test.Current_Longitude(), is(equalTo(test_longitude)));
+    }
+
+
+    /*
+    Test Case ID: 4.16
+    Purpose: Test out of bound location.
     Preconditions: None
     Expected Result: Null Object Exception
     */
-    @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
+    @Test(expected = Null_Object_Exception.class)
     public void testOutOfBoundLatitudeLongitudeConstructor() {
-        Location test = new Location(-91.0f, 181.0f);
-//        System.out.print(test.Current_Latitude());
-//        assertThat(test.Current_Latitude(), is(equalTo(-80.0f)));
+        float test_latitude = -91.0f;
+        float test_longitude = 181.0f;
+        Location test = new Location(test_latitude,test_longitude);
+        assertThat(test.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat(test.Current_Longitude(), is(equalTo(test_longitude)));
     }
 
     /*
-    Test Case ID: 4.15
-    Purpose: Test border locations. i.e. New_latitude = -90.0000000000, NewLongitude = 180.0000000000
+    Test Case ID: 4.17
+    Purpose: Test border locations.
     Preconditions: None
     Expected Result: Location object created with new values assigend for Latitude and Longitude
     */
     @Test
     public void testBoarderLatittudeLongitudeConstructor() {
-        Location test = new Location(-90.0f, 180.0f);
-    }
-    /*
-    Test Case ID: 4.16
-    Purpose: Test good New_latitude value, bad longitude value. i.e. New_latitude = -88.0000000000, New_longitude = -1280.0000000000
-    Preconditions: None
-    Expected Result: Null Object Exception
-    */
-    @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
-    public void testBadLongitudeForConstructor () {
-        Location test = new Location(-80.0f, 1000.0f);
-
-    }
-
-    /*
-    Test Case ID: 4.17
-    Purpose: Test good New_Longitude value. i.e. New_latitude = -1188.0000000000, New_longitude = -175.0000000000
-    Preconditions: None
-    Expected Result: Null Object Exception
-    */
-    @Test(expected = Null_Object_Exception.class)//we are saying we expect the exception per the code
-    public void testBadLatitudeForConstructor () {
-        Location test = new Location(-1188.0000000000f, -175.00000000000f);
-
+        float test_latitude = -90.0f;
+        float test_longitude = 180.0f;
+        Location test = new Location(test_latitude,test_longitude);
+        assertThat(test.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat(test.Current_Longitude(), is(equalTo(test_longitude)));
     }
 
     /*
     Test Case ID: 4.18
+    Purpose: Test good New_latitude value, bad longitude value.
+    Preconditions: None
+    Expected Result: Null Object Exception
+    */
+    @Test(expected = Null_Object_Exception.class)
+    public void testBadLongitudeForConstructor () {
+        float test_latitude = -80.0f;
+        float test_longitude = 1000.0f;
+        Location test = new Location(test_latitude,test_longitude);
+        assertThat(test.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat(test.Current_Longitude(), is(equalTo(test_longitude)));
+    }
+
+    /*
+    Test Case ID: 4.19
+    Purpose: Test good New_Longitude value.
+    Preconditions: None
+    Expected Result: Null Object Exception
+    */
+    @Test(expected = Null_Object_Exception.class)
+    public void testBadLatitudeForConstructor () {
+        float test_latitude = -1188.0000000000f;
+        float test_longitude = -175.00000000000f;
+        Location test = new Location(test_latitude,test_longitude);
+        assertThat(test.Current_Latitude(), is(equalTo(test_latitude)));
+        assertThat(test.Current_Longitude(), is(equalTo(test_longitude)));
+    }
+
+    /*
+    Test Case ID: 4.20
     Purpose: Test with empty paramater list
     Preconditions: None
     Expected Result: Compiler Error
@@ -249,7 +317,7 @@ public class LocationTest  {
 //    }
 
     /*
-    Test Case ID: 4.19
+    Test Case ID: 4.21
     Purpose: Test with string value for input. i.e. "Ninety"...
     Preconditions: None
     Expected Result: Compiler error
@@ -263,6 +331,7 @@ public class LocationTest  {
     public void tearDown() {
         test_object = null;
     }
+
 }
 
 

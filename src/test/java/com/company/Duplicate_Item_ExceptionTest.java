@@ -6,14 +6,19 @@
  *******************************************************************************************************/
 package com.company;
 
-import com.company.Duplicate_Item_Exception;
-import com.sun.org.apache.bcel.internal.generic.DUP;
+import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Duplicate_Item_ExceptionTest {
 
+    Duplicate_Item_Exception testItem;
+
+    @Before
+    public void setUp(){
+        testItem = new Duplicate_Item_Exception();
+    }
     /*
     Test Case ID: 1.01
     Purpose: Test default exception
@@ -22,10 +27,7 @@ public class Duplicate_Item_ExceptionTest {
     */
     @Test
     public void testDefaultException(){
-        Duplicate_Item_Exception testItem = new Duplicate_Item_Exception();
-//        System.out.print( testItem.fillInStackTrace()  );
-//
-//        testItem.printStackTrace() ;
+        testItem = new Duplicate_Item_Exception();
         assertThat(testItem.getMessage(), is(nullValue()) );
     }
 
@@ -37,8 +39,7 @@ public class Duplicate_Item_ExceptionTest {
     */
     @Test
     public void testMessageException(){
-        Duplicate_Item_Exception testItem = new Duplicate_Item_Exception("Exception in test");
-        //System.out.print( testItem.getMessage() );
+        testItem = new Duplicate_Item_Exception("Exception in test");
         assertThat("Exception in test", is(equalTo(testItem.getMessage())));
 
     }
