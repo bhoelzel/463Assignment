@@ -20,7 +20,6 @@ public class Response_Unit_ManagerTest {
     public void setUp() throws Exception {
 
     }
-    
     // Testing Add_Response_Unit
     /*
     Test Case ID: 6.01
@@ -28,7 +27,7 @@ public class Response_Unit_ManagerTest {
     Preconditions: New_Unit is null
     Expected Result: Null_Object_Exception is thrown.
     */
-    
+
     // Testing the smallest Unit (referencing test sequence)
     /*
     Test Case ID: 6.02
@@ -36,9 +35,6 @@ public class Response_Unit_ManagerTest {
     Preconditions: New_Unit has the same ID as an existing unit
     Expected Result: Duplicate_Item_Exception is thrown.
     */
-
-
-
 }
 
 
