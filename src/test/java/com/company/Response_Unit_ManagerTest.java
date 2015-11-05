@@ -16,9 +16,11 @@ import static org.junit.Assert.*;
  */
 public class Response_Unit_ManagerTest {
 
+
+
     @Before
     public void setUp() throws Exception {
-
+        Response_Unit_Manager test_subject = new Response_Unit_Manager();
     }
     // Testing Add_Response_Unit
     /*
@@ -27,6 +29,7 @@ public class Response_Unit_ManagerTest {
     Preconditions: New_Unit is null
     Expected Result: Null_Object_Exception is thrown.
     */
+
 
     // Testing the smallest Unit (referencing test sequence)
     /*
