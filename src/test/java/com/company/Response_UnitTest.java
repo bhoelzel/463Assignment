@@ -1,13 +1,14 @@
 /*******************************************************************************************************
  *       UNIT - Reponse_Unit_ Test Sequence
  *       Description of test execution
- *       First execution step: Testing Reponse_Unit Positive Path.
- Then test: 'Response_Unit' Boundary tests, Negative Paths
+ *       First execution step: Testing Reponse_Unit Constructor Positive Path.
  *       Then test Lowest Unit Functions: Getters
+ *       Then test: 'Response_Unit' Boundary tests, Negative Paths
  *******************************************************************************************************/
 package com.company;
 
 import org.junit.Before;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
@@ -16,10 +17,20 @@ import static org.junit.Assert.*;
  */
 public class Response_UnitTest {
 
+    Response_Unit Test_Unit;
+    Location Test_Location = new Location(80.00f,80f);
     @Before
+    @Test
     public void setUp() throws Exception {
 
+        Test_Unit = new Response_Unit("9000", Test_Location);
+
     }
+
+    //Test Getters positive
+    //Test Getters negative
+    //Test Setters Positive path
+    //Test setters Negative path
 }
 
 
