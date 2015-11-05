@@ -20,16 +20,17 @@ public class Response_Unit_ManagerTest {
     public void setUp() throws Exception {
 
     }
-
-}
-
-// Testing Add_Response_Unit
+    // Testing Add_Response_Unit
     /*
     Test Case ID: 6.01
     Purpose: “Testing if the New_Unit is NULL that the program will not crash”
     Preconditions: New_Unit is null
     Expected Result: Null_Object_Exception is thrown.
     */
+
+}
+
+
 
 // Testing the smallest Unit (referencing test sequence)
     /*
