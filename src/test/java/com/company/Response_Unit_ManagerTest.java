@@ -20,7 +20,13 @@ public class Response_Unit_ManagerTest {
     public void setUp() throws Exception {
 
     }
-
+    // Testing the smallest Unit (referencing test sequence)
+    /*
+    Test Case ID: 6.02
+    Purpose: “Testing if the New_Unit has a duplicate ID that the program will not crash”
+    Preconditions: New_Unit has the same ID as an existing unit
+    Expected Result: Duplicate_Item_Exception is thrown.
+    */
 }
 
 // Testing Add_Response_Unit
@@ -31,13 +37,7 @@ public class Response_Unit_ManagerTest {
     Expected Result: Null_Object_Exception is thrown.
     */
 
-// Testing the smallest Unit (referencing test sequence)
-    /*
-    Test Case ID: 6.02
-    Purpose: “Testing if the New_Unit has a duplicate ID that the program will not crash”
-    Preconditions: New_Unit has the same ID as an existing unit
-    Expected Result: Duplicate_Item_Exception is thrown.
-    */
+
 
 
     /*
