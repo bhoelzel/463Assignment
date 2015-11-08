@@ -7,6 +7,7 @@
 package com.company;
 
 import org.junit.Before;
+import sun.misc.Compare;
 
 import static org.junit.Assert.*;
 
@@ -15,10 +16,20 @@ import static org.junit.Assert.*;
  */
 public class Command_ComparatorTest {
 
+    Command Command_Test_One;
+    Command Command_Test_Two;
+    int Result_Priority, Prio1, Prio2;
     @Before
     public void setUp() throws Exception {
 
+        Command_Test_One = new Toggle_Emergency_Command("TEST_ID1_Test");
+        Command_Test_Two = new Toggle_Emergency_Command("Unit_ID2_Test");
+        Command_Test_One.Set_Priority(9);
+        Command_Test_Two.Set_Priority(10);
+
+      // Result_Priority = new Command_Comparator(Command_Test_One,Command_Test_Two);
     }
+
 }
 
 // Testing Compare
