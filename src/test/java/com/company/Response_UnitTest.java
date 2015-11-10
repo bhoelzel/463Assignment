@@ -67,8 +67,7 @@ public class Response_UnitTest {
     Expected Result: Status returns the data assigned to the variable. Valid Status_Type Data output.
     */
     @Test
-    public void test_Current_Status_TypeGetter(){assertThat(Test_Unit.Status(), is(equalTo(Response_Unit.Status_Type.Not_In_Service)));}
-
+    public void testrent_Status_TypeGetter(){assertThat(Test_Unit.Status(), is(equalTo(Response_Unit.Status_Type.Not_In_Service)));}
     //Testing Unit_ID
     /*
      Test Case ID: 5.09
