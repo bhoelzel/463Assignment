@@ -7,7 +7,7 @@
  *       Positive / negative constructor tests
  *******************************************************************************************************/
 
-//TODO: add the negative getters, they fail complie. Can I do out of sequence test?
+//TODO: add the negative getters, they fail complie. Can I do out of sequence test? What about test sequence in Junit
 
 package com.company;
 
