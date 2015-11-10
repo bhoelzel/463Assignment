@@ -8,21 +8,82 @@ package com.company;
 
 import org.junit.Before;
 import org.junit.Test;
+import sun.org.mozilla.javascript.internal.EcmaError;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by kazzdingo on 11/4/15.
  */
 public class Response_Unit_ManagerTest {
+    String test_id = "1001";
+    Response_Unit test_response_unit;
+    Response_Unit_Manager test_subject;
 
-
-
+    //Positive path constructor test including adding Response_Unit
+    /*
+    Test Case ID: 6.01
+    Purpose: Test initialise Response_Unit_Manager.
+    Preconditions: A valid Location object has been initialized
+                   A valid Response_Unit has been initialized
+    Expected Result: Response_Unit_Manager has been initialized with a Response_Unit added
+    */
+    @Test
     @Before
     public void setUp() throws Exception {
-        Response_Unit_Manager test_subject = new Response_Unit_Manager();
+        //Test
+        test_subject = new Response_Unit_Manager();
+        //Testing of Location has been completed prior
+        Location test_location = new Location(-80.0f, -100.0f);
+        //Testing of Response_Unit has been completed prior
+        test_response_unit = new Response_Unit(test_id, test_location);
+        test_subject.Add_Response_Unit(test_response_unit);
     }
-    // Testing Add_Response_Unit
+
+
+//    @Test
+//    public void TestAddingGoodResponseUnit() throws Exception {
+//        //Testing of Location has been completed prior
+//        Location test_location = new Location(-80.0f, -100.0f);
+//        //Testing of Response_Unit has been completed prior
+//        Response_Unit test_response_unit = new Response_Unit(test_id, test_location);
+//        test_subject.Add_Response_Unit(test_response_unit);
+//    }
+
+    //Positive path getter tests
+    /*
+    Test Case ID: 6.02
+    Purpose: Test object exist in Response_Unit_Manager
+    Preconditions: Test_Object has been initialized with Response_Unit having ID of "1001"
+    Expected result: Return true
+    */
+    @Test
+    public void TestUnitIdExist(){
+        assertTrue(test_subject.Response_Unit_Exists(test_id));
+    }
+
+    /*
+    Test Case ID: 6.03
+    Purpose: Test Response_Unit getter
+    Preconditions: Test_Object has been initialized with Response_Unit having ID of "1001"
+    Expected result: Return true
+    */
+    @Test
+    public void TestResponseUnitGetter(){
+        Response_Unit retrived_unit;
+        retrived_unit = test_subject.Response_Unit_Named(test_id);
+        assertThat(retrived_unit, is(equalTo(test_response_unit)));
+    }
+
+
+
+//TODO: Test bool
+}
+
+
+// Testing Add_Response_Unit
     /*
     Test Case ID: 6.01
     Purpose: “Testing if the New_Unit is NULL that the program will not crash”
@@ -31,15 +92,14 @@ public class Response_Unit_ManagerTest {
     */
 
 
-    // Testing the smallest Unit (referencing test sequence)
+
+// Testing the smallest Unit (referencing test sequence)
     /*
     Test Case ID: 6.02
     Purpose: “Testing if the New_Unit has a duplicate ID that the program will not crash”
     Preconditions: New_Unit has the same ID as an existing unit
     Expected Result: Duplicate_Item_Exception is thrown.
     */
-}
-
 
 
 

@@ -2,10 +2,13 @@
  *       Location Test
  *       Description of test sequence:
  *       Positive path constructor test
- *       Positive / negative getter tests
+ *       Positive getter tests
  *       Positive / negative setter tests
  *       Positive / negative constructor tests
  *******************************************************************************************************/
+
+//TODO: add the negative getters, they fail complie. Can I do out of sequence test? What about test sequence in Junit
+
 package com.company;
 
 import org.junit.Before;
