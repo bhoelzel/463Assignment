@@ -10,13 +10,16 @@ import org.junit.Before;
 import org.junit.Test;
 import sun.org.mozilla.javascript.internal.EcmaError;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by kazzdingo on 11/4/15.
  */
 public class Response_Unit_ManagerTest {
     String test_id = "1001";
+    Response_Unit test_response_unit;
     Response_Unit_Manager test_subject;
 
     //Positive path constructor test including adding Response_Unit
@@ -35,7 +38,7 @@ public class Response_Unit_ManagerTest {
         //Testing of Location has been completed prior
         Location test_location = new Location(-80.0f, -100.0f);
         //Testing of Response_Unit has been completed prior
-        Response_Unit test_response_unit = new Response_Unit(test_id, test_location);
+        test_response_unit = new Response_Unit(test_id, test_location);
         test_subject.Add_Response_Unit(test_response_unit);
     }
 
@@ -52,8 +55,8 @@ public class Response_Unit_ManagerTest {
     //Positive path getter tests
     /*
     Test Case ID: 6.02
-    Purpose: Test getter when object has good ID
-    Preconditions: Test_Object has been initialized
+    Purpose: Test object exist in Response_Unit_Manager
+    Preconditions: Test_Object has been initialized with Response_Unit having ID of "1001"
     Expected result: Return true
     */
     @Test
@@ -61,6 +64,18 @@ public class Response_Unit_ManagerTest {
         assertTrue(test_subject.Response_Unit_Exists(test_id));
     }
 
+    /*
+    Test Case ID: 6.03
+    Purpose: Test Response_Unit getter
+    Preconditions: Test_Object has been initialized with Response_Unit having ID of "1001"
+    Expected result: Return true
+    */
+    @Test
+    public void TestResponseUnitGetter(){
+        Response_Unit retrived_unit;
+        retrived_unit = test_subject.Response_Unit_Named(test_id);
+        assertThat(retrived_unit, is(equalTo(test_response_unit)));
+    }
 
 
 
