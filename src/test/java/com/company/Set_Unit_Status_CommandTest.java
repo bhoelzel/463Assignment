@@ -14,16 +14,16 @@ import org.junit.Test;
 
 public class Set_Unit_Status_CommandTest {
 
-}
-	// Testing Constructor Positive Path
+
+    // Testing Constructor Positive Path
 	/*
 	Test Case ID: 8.03
 	Purpose: �Test Set_Unit_Status_Command constructor with valid Unit_ID and valid Status_Type"
 	Preconditions: A unit with the ID 10 exists within the system.
 	Expected Result: A new Set_Unit_Status_Command is constructed.
 	*/
-	
-	// Testing Execute Function
+
+    // Testing Execute Function
 	/*
 	Test Case ID: 8.01
 	Purpose: �Testing if Null_Unit_ID_Exeption is thrown when a null ID is provided�
@@ -36,9 +36,9 @@ public class Set_Unit_Status_CommandTest {
 	Purpose: �Testing if provided Unit_ID does not exist�
 	Preconditions: Command exists with Unit_ID set to a unit ID that does not exist within the system "123"
 	Expected Result: No units have their status changed and the system does not crash.
-	*/ 
+	*/
 
-	// Testing Constructor Negative Path
+    // Testing Constructor Negative Path
 	/*
 	Test Case ID: 8.04
 	Purpose: �Testing if Set_Unit_Status_Command is passed an integer as the Unit_ID, it does not crash�
@@ -58,4 +58,5 @@ public class Set_Unit_Status_CommandTest {
 	Purpose: �Testing if Set_Unit_Status_Command is passed an invalid Status_Type�
 	Preconditions: The value passed to Status_Type is the value 5.
 	Expected Result: A new Set_Unit_Status_Command is not constructed and the system does not crash.
-	*/ 
+	*/
+}

@@ -14,8 +14,8 @@ import org.junit.Test;
 
 public class Toggle_Emergency_CommandTest {
 
-}
-	// Testing Constructor Positive Path
+
+    // Testing Constructor Positive Path
 	 /*
 	Test Case ID: 11.03
 	Purpose: �Test Toggle_Emergency_Command constructor with a valid Unit_ID"
@@ -23,7 +23,7 @@ public class Toggle_Emergency_CommandTest {
 	Expected Result: A new Toggle_Emergency_Command is constructed.
 	*/
 
-	// Testing Execute Function
+    // Testing Execute Function
 	/*
 	Test Case ID: 11.01
 	Purpose: �Testing if Null_Unit_ID_Exception is thrown when a null ID is provided�
@@ -36,9 +36,9 @@ public class Toggle_Emergency_CommandTest {
 	Purpose: �Testing if provided Unit_ID does not exist�
 	Preconditions: Command exists with Unit_ID set to a unit ID that does not exist within the system "123"
 	Expected Result: No emergencies are toggled and the system does not crash.
-	*/ 
-	
-	// Testing Constructor Negative Path
+	*/
+
+    // Testing Constructor Negative Path
 	/*
 	Test Case ID: 11.04
 	Purpose: �Testing if Toggle_Emergency_Command is passed an integer as the Unit_ID, it does not crash�
@@ -51,4 +51,5 @@ public class Toggle_Emergency_CommandTest {
 	Purpose: �Testing if Toggle_Emergency_Command is passed a String which does not represent a Unit_ID it does not crash�
 	Preconditions: The value passed to Unit_ID is the String "123abc###".
 	Expected Result: A new Toggle_Emergency_Command is not constructed and the system does not crash.
-	*/   
+	*/
+}
