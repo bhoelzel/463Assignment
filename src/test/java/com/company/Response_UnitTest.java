@@ -3,7 +3,7 @@
  *       Description of test execution
  *       First execution step: Testing Reponse_Unit Constructor Positive Path.
  *       Then test Lowest Unit Functions: Getters/getters Positive Path
- *       Then test: Setters Negative
+ *       Then test: Setters Positive/Negative
  *       Then test: 'Response_Unit' Boundary tests, Negative Paths
  *******************************************************************************************************/
 package com.company;
@@ -25,7 +25,7 @@ public class Response_UnitTest {
     Response_Unit Test_Unit;
     String Good_Unit_ID = "9000";
     Location Good_Test_Location = new Location(80.00f,80f);
-//    Status_Type Good_Status = Status_Type.Not_In_Service;
+
     //Testing Constructor positive
     /*
     Test Case ID: 5.01
@@ -67,7 +67,7 @@ public class Response_UnitTest {
     Expected Result: Status returns the data assigned to the variable. Valid Status_Type Data output.
     */
     @Test
-    public void testrent_Status_TypeGetter(){assertThat(Test_Unit.Status(), is(equalTo(Response_Unit.Status_Type.Not_In_Service)));}
+    public void testCurrent_Status_TypeGetter(){assertThat(Test_Unit.Status(), is(equalTo(Response_Unit.Status_Type.Not_In_Service)));}
     //Testing Unit_ID
     /*
      Test Case ID: 5.09
@@ -78,47 +78,116 @@ public class Response_UnitTest {
     @Test
     public void test_Unit_IDGetter(){assertThat(Test_Unit.Unit_ID(), is(equalTo(Good_Unit_ID)));}
 
-    //Test Setters Negative Path
-    //Testing Set_Emergency
+    //Test Setters Positive/Negative Path
+    //Testing Set_Emergency Setter Positive
     /*
      Test Case ID: 5.10
+     Purpose: "Testing Set_Emergency to make sure we can set it to a 'Boolean' data type"
+     Precondition: Set a Boolean to an existing Response_Unit from the default false to true value.
+     Expected Result: The new Emergency_Exists value should be updated to True.
+     */
+    @Test
+    public void test_Set_EmergencySetterPositive(){
+        Test_Unit.Set_Emergency(Boolean.TRUE);
+        assertTrue(Test_Unit.Emergency_Exists());
+    }
+
+    //Testing Set_Emergency Setter Negative
+    /*
+     Test Case ID: 5.11
+     Purpose: "Testing Set_Emergency to make sure we can not set it to a non 'Boolean' data type"
+     Precondition: Set New_Location as a 'String' or 'int'
+     Expected Result: Set_Emergency should fail to initilize.
+     */
+    /* NOTE: Test failed to compile so this scenario can not occur.  Test PASSED
+    @Test
+    public void test_Set_EmergencySetterNegative(){
+        Test_Unit.Set_Emergency("9000");
+        assertTrue(Test_Unit.Emergency_Exists());
+    }
+    */
+
+    //Testing Set_Location Positive
+    /*
+     Test Case ID: 5.12
+     Purpose: "Testing Set_Location to make sure we can set it to a 'Location' data type"
+     Precondition: Set New_Location as a valid Location Data Type'
+     Expected Result: Test_Unit Current Location should match the new Location assigned to it.
+     */
+    @Test
+    public void test_Set_LocationSetterPositive(){
+        Location Good_Test_Location_Two = new Location(90.00f,90f);
+        Test_Unit.Set_Location(Good_Test_Location_Two);
+        assertThat(Test_Unit.Current_Location(), is(equalTo(Good_Test_Location_Two)));
+    }
+
+     /*
+     Test Case ID: 5.13
      Purpose: "Testing Set_Location to make sure we can not set it to a non 'Location' data type"
      Precondition: Set New_Location as a 'String' or 'int' or 'boolean'
      Expected Result: Set_Location should fail to initilize.
      */
+    /* NOTE: Test failed to compile so this scenario can not occur.  Test PASSED
+     @Test
+     public void test_Set_LocationSetterNegative(){
+         Location Good_Test_Location_Two = new Location("name","name2");
+         Test_Unit.Set_Location(Good_Test_Location_Two);
+         assertThat(Test_Unit.Current_Location(), is(equalTo(Good_Test_Location_Two)));
+     }
+     */
 
-    //Testing Set_Location
+    //Testing Set_Status Setter Positive
     /*
-     Test Case ID: 5.11
+     Test Case ID: 5.14
      Purpose: "Testing Set_Status to make sure we can not set it to a non 'Status_Type' value"
      Precondition: Set New_Setting as a 'String' or 'int' or 'Boolean'
      Expected Result: Set_Status should fail to initilize.
      */
+    @Test
+    public void test_Set_StatusSetterPositive(){
+        Test_Unit.Set_Status(Response_Unit.Status_Type.Enroute);
+        assertThat(Test_Unit.Status(), is(equalTo(Response_Unit.Status_Type.Enroute)));
+    }
+
+    //Testing Set_Status Setter Negative
+     /*
+     Test Case ID: 5.15
+     Purpose: "Testing Set_Status to make sure we can not set it to a non 'Status_Type' value"
+     Precondition: Set New_Setting as a 'String' or 'int' or 'Boolean'
+     Expected Result: Set_Status should fail to initilize.
+     */
+    /* NOTE: Test failed to compile so this scenario can not occur.  Test PASSED
+    @Test
+    public void test_Set_StatusSetterNegative(){
+        Test_Unit.Set_Status(Response_Unit.Status_Type.Missing);
+        assertThat(Test_Unit.Status(), is(equalTo(Response_Unit.Status_Type.Enroute)));
+    }
+    */
 
 }
 
 
 // Testing Response_Unit
     /*
-    Test Case ID: 5.02
+    Test Case ID: 5.16
     Purpose: “Testing if Response_Unit param Unit_ID is NULL that the exception is thrown”
     Preconditions: Unit_ID is null
     Expected Result: Exception is thrown and program exits normally
     */
     /*
-    Test Case ID: 5.03
+    Test Case ID: 5.17
     Purpose: “Testing if Response_Unit param Unit_ID is an Unusual value, the String “á£ \uFFFF.深“ ”
     Preconditions: Unit_ID is the String “á£ \uFFFF.深“
     Expected Result: Unit_ID=”á£ \uFFFF.深“ is updated with status.
     */
     /*
-    Test Case ID: 5.04
+    Test Case ID: 5.18
     Purpose: “Testing if Response_Unit param Starting_Location is NULL that the exception is thrown”
     Preconditions: Starting_Location is null
     Expected Result: Exception is thrown and program exits normally
     */
     /*
-    Test Case ID: 5.05
+    Test Case ID: 5.19
     Purpose: “Testing if Response_Unit param Starting_Location is an Unusual value (invalid enum type), the String “á£ \uFFFF.深“ ”
     Preconditions: Starting_Location is the String “á£ \uFFFF.深“
     Expected Result: Starting_Location is invalid enum type and is rejected.
