@@ -39,6 +39,17 @@ public class Send_Message_To_Operator_CommandTest {
     }
 
     // Testing Execute Function
+    /*
+	Test Case ID: 9.03
+	Purpose: �Testing if Execute successfully completes�
+	Preconditions: Command exists with Unit_ID set to a unit ID exists and a valid message"
+	Expected Result: Execute completes without error.
+	*/
+    @Test
+    public void testSuccessfulExecute() throws Exception{
+        test_object = new Send_Message_To_Operator_Command("1", "Test");
+        test_object.Execute();
+    }
 	/*
 	Test Case ID: 9.02
 	Purpose: “Testing if Null_Unit_ID_Exception is thrown when a null ID is provided”

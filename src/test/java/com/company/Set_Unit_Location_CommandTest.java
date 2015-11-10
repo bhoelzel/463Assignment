@@ -8,12 +8,26 @@
 
 package com.company;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 
 public class Set_Unit_Location_CommandTest {
 
+
+    Set_Unit_Location_Command test_object;
+    Response_Unit_Manager response_unit_manager_object;
+    Response_Unit response_unit_object;
+    Location location_object;
+
+
+    @Before
+    public void setUp(){
+        location_object = new Location(90, 90);
+        test_object = new Set_Unit_Location_Command("1", location_object);
+        response_unit_manager_object = new Response_Unit_Manager();
+    }
 
     // Testing Constructor Positive Path
 	/*
@@ -22,20 +36,50 @@ public class Set_Unit_Location_CommandTest {
 	Preconditions: A unit with the ID 10 exists within the system.
 	Expected Result: A new Set_Unit_Location_Command is constructed.
 	*/
+    @Test
+    public void testConstructor() {
+        location_object = new Location(90, 90);
+        test_object = new Set_Unit_Location_Command("1", location_object);
+    }
 
     // Testing Execute Function
+    /*
+	Test Case ID: 10.03
+	Purpose: �Testing if Execute successfully updates unit location�
+	Preconditions: Command exists with Unit_ID set to a unit ID exists and a valid location"
+	Expected Result: Response_Unit has its location updated.
+	*/
+    @Test
+    public void testSuccessfulExecute() throws Exception{
+        location_object = new Location(10, 10);
+        response_unit_object = new Response_Unit("1", new Location(90, 90));
+        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        test_object = new Set_Unit_Location_Command("1", location_object);
+        test_object.Execute();
+        Assert.assertSame(response_unit_manager_object.Response_Unit_Named("1").Current_Location(), location_object);
+    }
 	/*
 	Test Case ID: 10.02
-	Purpose: �Testing if Null_Unit_ID_Exeption is thrown when a null ID is provided�
+	Purpose: �Testing if Null_Unit_ID_Exception is thrown when a null ID is provided�
 	Preconditions: Command exists with Unit_ID set to null
 	Expected Result: Null_Unit_ID_Exception is thrown.
-	*/ 
+	*/
+    @Test
+    public void testNullUnitIDException() {
+        test_object = new Set_Unit_Location_Command("2", location_object);
+        try {
+            test_object.Execute();
+            Assert.fail("Excepted Null_Unit_ID_Exception");
+        } catch (Null_Unit_ID_Exception e) {
+            // Passed
+        }
+    }
 	
 	/*
 	Test Case ID: 10.03
 	Purpose: �Testing if provided Unit_ID does not exist�
 	Preconditions: Command exists with Unit_ID set to a unit ID that does not exist within the system "123"
-	Expected Result: No units have their location changed and the system does not crash..
+	Expected Result: No units have their location changed and the system does not crash.
 	*/
 
     // Testing Constructor Negative Path
@@ -43,20 +87,20 @@ public class Set_Unit_Location_CommandTest {
 	Test Case ID: 10.04
 	Purpose: �Testing if Set_Unit_Location_Command is passed an integer as the Unit_ID it does not crash�
 	Preconditions: A unit with the ID 10 exists within the system. Set_Unit_Location is passed the value 10.
-	Expected Result: A new Set_Unit_Location_Command is constructed and the system does not crash..
+	Expected Result: A new Set_Unit_Location_Command is constructed and the system does not crash.
 	*/
 	
 	/*
 	Test Case ID: 10.05
 	Purpose: �Testing if Set_Unit_Location_Command is passed a String which does not represent a Unit_ID it does not crash�
 	Preconditions: The value passed to Unit_ID is the String "123abc###".
-	Expected Result: A new Set_Unit_Location_Command is not constructed and the system does not crash..
+	Expected Result: A new Set_Unit_Location_Command is not constructed and the system does not crash.
 	*/ 
 	
 	/*
 	Test Case ID: 10.06
 	Purpose: �Testing if Set_Unit_Location_Command is passed an invalid location it does not crash�
 	Preconditions: The value passed to Update_Location is invalid location with a longitude of -1000 and latitude of -1000.
-	Expected Result: A new Set_Unit_Location_Command is not constructed and the system does not crash..
+	Expected Result: A new Set_Unit_Location_Command is not constructed and the system does not crash.
 	*/
 }
