@@ -25,7 +25,7 @@ public class Response_UnitTest {
     Response_Unit Test_Unit;
     String Good_Unit_ID = "9000";
     Location Good_Test_Location = new Location(80.00f,80f);
-    //Status_Type Good_Status = Status_Type.Not_In_Service;
+//    Status_Type Good_Status = Status_Type.Not_In_Service;
     //Testing Constructor positive
     /*
     Test Case ID: 5.01
@@ -67,7 +67,7 @@ public class Response_UnitTest {
     Expected Result: Status returns the data assigned to the variable. Valid Status_Type Data output.
     */
     @Test
-    public void test_Current_Status_TypeGetter(){/*assertThat(Test_Unit.Current_Status_Type(), is(equalTo(Good_Status)));*/}
+    public void test_Current_Status_TypeGetter(){assertThat(Test_Unit.Status(), is(equalTo(Response_Unit.Status_Type.Not_In_Service)));}
 
     //Testing Unit_ID
     /*
