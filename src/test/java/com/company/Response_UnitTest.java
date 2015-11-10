@@ -18,13 +18,14 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 /**
- * Created by kazzdingo on 11/4/15.
+ * Created by Bijan Hamidi on 11/4/15.
+ *
  */
 public class Response_UnitTest {
 
     Response_Unit Test_Unit;
     String Good_Unit_ID = "9000";
-    Location Good_Test_Location = new Location(80.00f,80f);
+    Location Good_Test_Location = new Location(80.00f, 80f);
 
     //Testing Constructor positive
     /*
@@ -35,7 +36,9 @@ public class Response_UnitTest {
     */
     @Before
     @Test
-    public void setUp() throws Exception { Test_Unit = new Response_Unit(Good_Unit_ID, Good_Test_Location);}
+    public void setUp() throws Exception {
+        Test_Unit = new Response_Unit(Good_Unit_ID, Good_Test_Location);
+    }
 
     //Test Getters/Setters positive
     //Testing Emergency_Exists
@@ -46,7 +49,8 @@ public class Response_UnitTest {
     Expected Result: Emergency_Exists returns the data assigned to the variable. Valid Boolean Data output.
     */
     @Test
-    public void test_Emergency_ExistsGetter(){assertFalse(Test_Unit.Emergency_Exists());
+    public void test_Emergency_ExistsGetter() {
+        assertFalse(Test_Unit.Emergency_Exists());
     }
 
     //Testing Current_Location
@@ -57,7 +61,9 @@ public class Response_UnitTest {
     Expected Result: Current_Location returns the data assigned to the variable. Valid Location Data type output.
     */
     @Test
-    public void test_Current_LocationGetter(){assertThat(Test_Unit.Current_Location(), is(equalTo(Good_Test_Location)));}
+    public void test_Current_LocationGetter() {
+        assertThat(Test_Unit.Current_Location(), is(equalTo(Good_Test_Location)));
+    }
 
     //Testing Status_Type
     /*
@@ -67,7 +73,10 @@ public class Response_UnitTest {
     Expected Result: Status returns the data assigned to the variable. Valid Status_Type Data output.
     */
     @Test
-    public void testCurrent_Status_TypeGetter(){assertThat(Test_Unit.Status(), is(equalTo(Response_Unit.Status_Type.Not_In_Service)));}
+    public void testCurrent_Status_TypeGetter() {
+        assertThat(Test_Unit.Status(), is(equalTo(Response_Unit.Status_Type.Not_In_Service)));
+    }
+
     //Testing Unit_ID
     /*
      Test Case ID: 5.09
@@ -76,7 +85,9 @@ public class Response_UnitTest {
      Expected Result: Unit_ID returns the data assigned to the variable. Valid String Data output.
      */
     @Test
-    public void test_Unit_IDGetter(){assertThat(Test_Unit.Unit_ID(), is(equalTo(Good_Unit_ID)));}
+    public void test_Unit_IDGetter() {
+        assertThat(Test_Unit.Unit_ID(), is(equalTo(Good_Unit_ID)));
+    }
 
     //Test Setters Positive/Negative Path
     //Testing Set_Emergency Setter Positive
@@ -87,7 +98,7 @@ public class Response_UnitTest {
      Expected Result: The new Emergency_Exists value should be updated to True.
      */
     @Test
-    public void test_Set_EmergencySetterPositive(){
+    public void test_Set_EmergencySetterPositive() {
         Test_Unit.Set_Emergency(Boolean.TRUE);
         assertTrue(Test_Unit.Emergency_Exists());
     }
@@ -115,8 +126,8 @@ public class Response_UnitTest {
      Expected Result: Test_Unit Current Location should match the new Location assigned to it.
      */
     @Test
-    public void test_Set_LocationSetterPositive(){
-        Location Good_Test_Location_Two = new Location(90.00f,90f);
+    public void test_Set_LocationSetterPositive() {
+        Location Good_Test_Location_Two = new Location(90.00f, 90f);
         Test_Unit.Set_Location(Good_Test_Location_Two);
         assertThat(Test_Unit.Current_Location(), is(equalTo(Good_Test_Location_Two)));
     }
@@ -144,7 +155,7 @@ public class Response_UnitTest {
      Expected Result: Set_Status should fail to initilize.
      */
     @Test
-    public void test_Set_StatusSetterPositive(){
+    public void test_Set_StatusSetterPositive() {
         Test_Unit.Set_Status(Response_Unit.Status_Type.Enroute);
         assertThat(Test_Unit.Status(), is(equalTo(Response_Unit.Status_Type.Enroute)));
     }
@@ -164,36 +175,59 @@ public class Response_UnitTest {
     }
     */
 
-}
 
-
-// Testing Response_Unit
+    // Testing Response_Unit
     /*
     Test Case ID: 5.16
     Purpose: “Testing if Response_Unit param Unit_ID is NULL that the exception is thrown”
     Preconditions: Unit_ID is null
     Expected Result: Exception is thrown and program exits normally
     */
+    @Test(expected = Null_Object_Exception.class)
+    public void test_Response_Unit_Param_UnitID_isNull() throws Exception {
+        Response_Unit Response_Unit_Bad = new Response_Unit(null, Good_Test_Location);
+        assertThat(Response_Unit_Bad.Unit_ID(), is(equalTo(null)));
+    }
+
     /*
     Test Case ID: 5.17
     Purpose: “Testing if Response_Unit param Unit_ID is an Unusual value, the String “á£ \uFFFF.深“ ”
     Preconditions: Unit_ID is the String “á£ \uFFFF.深“
     Expected Result: Unit_ID=”á£ \uFFFF.深“ is updated with status.
     */
+    @Test
+    public void test_Response_Unit_Param_UnitID_isUnusual() throws Exception {
+        Response_Unit Response_Unit_Bad = new Response_Unit("á£ \\uFFFF.深", Good_Test_Location);
+        assertThat(Response_Unit_Bad.Unit_ID(), is(equalTo("á£ \\uFFFF.深")));
+    }
+
     /*
     Test Case ID: 5.18
     Purpose: “Testing if Response_Unit param Starting_Location is NULL that the exception is thrown”
     Preconditions: Starting_Location is null
     Expected Result: Exception is thrown and program exits normally
     */
+    @Test(expected = Null_Object_Exception.class)
+    public void test_Response_Unit_Param_StartingLocation_isNull() throws Exception {
+        Response_Unit Response_Unit_Bad = new Response_Unit(Good_Unit_ID, null);
+        assertThat(Response_Unit_Bad.Current_Location(), is(equalTo(null)));
+    }
+
     /*
     Test Case ID: 5.19
     Purpose: “Testing if Response_Unit param Starting_Location is an Unusual value (invalid enum type), the String “á£ \uFFFF.深“ ”
     Preconditions: Starting_Location is the String “á£ \uFFFF.深“
     Expected Result: Starting_Location is invalid enum type and is rejected.
     */
+    /* Note: Test failed to compile, This scenario cannot occur.  Test PASSED
+    @Test(expected = Null_Object_Exception.class)
+    public void test_Response_Unit_Param_StartingLocation_isUnusual() throws Exception {
+        Response_Unit Response_Unit_Bad = new Response_Unit(Good_Unit_ID, "á£ \\uFFFF.深");
+        assertThat(Response_Unit_Bad.Current_Location(), is(equalTo("á£ \\uFFFF.深")));
+    }
+    */
 
-
+}
 
 
 
