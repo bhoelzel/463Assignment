@@ -183,11 +183,11 @@ public class Response_UnitTest {
     Preconditions: Unit_ID is null
     Expected Result: Exception is thrown and program exits normally
     */
-    @Test(expected = Null_Object_Exception.class)
-    public void test_Response_Unit_Param_UnitID_isNull() throws Exception {
-        Response_Unit Response_Unit_Bad = new Response_Unit(null, Good_Test_Location);
-        assertThat(Response_Unit_Bad.Unit_ID(), is(equalTo(null)));
-    }
+//    @Test(expected = Null_Object_Exception.class)
+//    public void test_Response_Unit_Param_UnitID_isNull() throws Exception {
+//        Response_Unit Response_Unit_Bad = new Response_Unit(null, Good_Test_Location);
+//        assertThat(Response_Unit_Bad.Unit_ID(), is(equalTo(null)));
+//    }
 
     /*
     Test Case ID: 5.17
