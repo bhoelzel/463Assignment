@@ -8,7 +8,7 @@ package com.company;
 
 import org.junit.Before;
 import org.junit.Test;
-import sun.org.mozilla.javascript.internal.EcmaError;
+//import sun.org.mozilla.javascript.internal.EcmaError;
 
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
