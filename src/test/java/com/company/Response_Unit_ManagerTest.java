@@ -21,7 +21,7 @@ public class Response_Unit_ManagerTest {
    static Response_Unit test_response_unit;
     static Response_Unit_Manager test_subject;
 
-//TODO: Stuff is pretty jacked up! Need to make sure it is ready to go before using it...
+
     //Test
 
 //    public void set() throws Exception {
