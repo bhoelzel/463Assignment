@@ -2,7 +2,7 @@
  *       UNIT - Command_Comparator Test Sequence
  *       Description of test execution
  *       First execution step: Testing 'Compare' Positive Path.
- *       Then test: 'Compare' Boundary Testing
+ *       Then test: 'Compare' null value testing
  *******************************************************************************************************/
 package com.company;
 
@@ -51,7 +51,6 @@ public class Command_ComparatorTest {
         Command_Test_Two.Set_Priority(10);
 
         Command_Comparator test = new Command_Comparator();
-        //test.compare(Command_Test_One, Command_Test_Two);
         assertThat(test.compare(Command_Test_One, Command_Test_Two), is(equalTo(-1)));
 
     }
@@ -83,7 +82,7 @@ public class Command_ComparatorTest {
 
         Command_Comparator test = new Command_Comparator();
         System.out.println (test.compare(Command_Test_One, Command_Test_Two));
-        //assertThat(test.compare(Command_Test_One, Command_Test_Two), is(equalTo(-1)));
+        //assertThat(test.compare(Command_Test_One, Command_Test_Two), is(equalTo(9)));
 
     }
 
@@ -93,16 +92,85 @@ public class Command_ComparatorTest {
     Preconditions: Command2.Priority is initialized as NULL.
     Expected Result: compare should return a valid int value.
     */
+    @Test
+    public void test_Compare_Command_2_isNull() throws Exception {
+
+        Command_Test_One = new Command(0, "TEST_ID1_Test") {
+            @Override
+            public void Execute() throws Null_Unit_ID_Exception {
+
+            }
+        };
+        Command_Test_Two = new Command(null, "Unit_ID2_Test") {
+            @Override
+            public void Execute() throws Null_Unit_ID_Exception {
+
+            }
+        };
+        Command_Test_One.Set_Priority(8);
+        Command_Test_Two.Set_Priority(null);
+
+        Command_Comparator test = new Command_Comparator();
+        System.out.println (test.compare(Command_Test_One, Command_Test_Two));
+        //assertThat((Command_Test_One.Priority()), is(equalTo(null)));
+
+    }
+
     /*
     Test Case ID: 12.4
     Purpose: “Testing if Command1 is NULL, in the event that command1 failed to initialized.”
     Preconditions: Command1 is initialized as NULL.
     Expected Result: compare should not crash and reflect that the value is invalid.
     */
+    @Test
+    public void test_Compare_Command1_param_isNull() throws Exception {
+
+        Command_Test_One = new Command(9, "TEST_ID1_Test") {
+            @Override
+            public void Execute() throws Null_Unit_ID_Exception {
+
+            }
+        };
+        Command_Test_Two = new Command(10, "Unit_ID2_Test") {
+            @Override
+            public void Execute() throws Null_Unit_ID_Exception {
+
+            }
+        };
+        Command_Test_One.Set_Priority(9);
+        Command_Test_Two.Set_Priority(10);
+
+        Command_Comparator test = new Command_Comparator();
+        System.out.println (test.compare(null, Command_Test_Two));
+
+    }
+
     /*
     Test Case ID: 12.5
     Purpose: “Testing if Command2 is NULL, in the event that command2 failed to initialized.”
     Preconditions: Command2 is initialized as NULL.
     Expected Result: compare should not crash and reflect that the value is invalid.
     */
+    @Test
+    public void test_Compare_Command2_param_isNull() throws Exception {
+
+        Command_Test_One = new Command(9, "TEST_ID1_Test") {
+            @Override
+            public void Execute() throws Null_Unit_ID_Exception {
+
+            }
+        };
+        Command_Test_Two = new Command(10, "Unit_ID2_Test") {
+            @Override
+            public void Execute() throws Null_Unit_ID_Exception {
+
+            }
+        };
+        Command_Test_One.Set_Priority(9);
+        Command_Test_Two.Set_Priority(10);
+
+        Command_Comparator test = new Command_Comparator();
+        System.out.println (test.compare(Command_Test_One, null));
+
+    }
 }
