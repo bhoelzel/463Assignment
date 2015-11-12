@@ -7,8 +7,9 @@
 package com.company;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-//import sun.org.mozilla.javascript.internal.EcmaError;
+///import sun.org.mozilla.javascript.internal.EcmaError;
 
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,9 +17,24 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class Response_Unit_ManagerTest {
-    String test_id = "1001";
-    Response_Unit test_response_unit;
-    Response_Unit_Manager test_subject;
+   static  String test_id = "1001";
+   static Response_Unit test_response_unit;
+    static Response_Unit_Manager test_subject;
+
+//TODO: Stuff is pretty jacked up! Need to make sure it is ready to go before using it...
+    //Test
+
+//    public void set() throws Exception {
+//
+//        test_subject = new Response_Unit_Manager();
+//        //Testing of Location has been completed prior
+//        Location test_location = new Location(-80.0f, -100.0f);
+//        //Testing of Response_Unit has been completed prior
+//        test_response_unit = new Response_Unit(test_id, test_location);
+//        test_subject.Add_Response_Unit(test_response_unit);
+//    }
+//
+
 
     //Positive path constructor test including adding Response_Unit
     /*
@@ -28,16 +44,22 @@ public class Response_Unit_ManagerTest {
                    A valid Response_Unit has been initialized
     Expected Result: Response_Unit_Manager has been initialized with a Response_Unit added
     */
-    @Test
-    @Before
-    public void setUp() throws Exception {
-        //Test
+    @BeforeClass
+    public static void setUpBeforeClass() {        //Test
         test_subject = new Response_Unit_Manager();
         //Testing of Location has been completed prior
         Location test_location = new Location(-80.0f, -100.0f);
         //Testing of Response_Unit has been completed prior
-        test_response_unit = new Response_Unit(test_id, test_location);
-        test_subject.Add_Response_Unit(test_response_unit);
+        try {
+            test_response_unit = new Response_Unit(test_id, test_location);
+        } catch (Null_Unit_ID_Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            test_subject.Add_Response_Unit(test_response_unit);
+        } catch (Duplicate_Item_Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //Positive path getter tests
