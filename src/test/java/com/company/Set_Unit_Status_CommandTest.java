@@ -8,6 +8,7 @@
 
 package com.company;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +23,6 @@ public class Set_Unit_Status_CommandTest {
 
     @Before
     public void setUp(){
-        test_object = new Set_Unit_Status_Command("1", Response_Unit.Status_Type.In_Station);
         response_unit_manager_object = new Response_Unit_Manager();
     }
     // Testing Constructor Positive Path
@@ -63,8 +63,6 @@ public class Set_Unit_Status_CommandTest {
     @Test
     public void testNullUnitIDException() throws Exception {
         test_object = new Set_Unit_Status_Command(null, Response_Unit.Status_Type.On_Scene);
-        response_unit_object = new Response_Unit("1", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
         try {
             test_object.Execute();
             Assert.fail("Excepted Null_Unit_ID_Exception");
@@ -140,4 +138,9 @@ public class Set_Unit_Status_CommandTest {
         Assert.assertNotSame(response_unit_manager_object.Response_Unit_Named("1").Status(), status_object);
     }
     */
+
+    @After
+    public void tearDown() {
+        response_unit_manager_object = null;
+    }
 }
