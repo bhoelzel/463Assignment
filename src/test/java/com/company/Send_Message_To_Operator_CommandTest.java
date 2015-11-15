@@ -18,7 +18,6 @@ public class Send_Message_To_Operator_CommandTest {
     Send_Message_To_Operator_Command test_object;
     Response_Unit_Manager response_unit_manager_object;
     Response_Unit response_unit_object;
-    Location location_object;
 
 
     @Before
@@ -40,7 +39,7 @@ public class Send_Message_To_Operator_CommandTest {
 
     // Testing Execute Function
     /*
-	Test Case ID: 9.03
+	Test Case ID: 9.02
 	Purpose: �Testing if Execute successfully completes�
 	Preconditions: Command exists with Unit_ID set to a unit ID exists and a valid message"
 	Expected Result: Execute completes without error.
@@ -50,15 +49,16 @@ public class Send_Message_To_Operator_CommandTest {
         test_object = new Send_Message_To_Operator_Command("1", "Test");
         test_object.Execute();
     }
+
 	/*
-	Test Case ID: 9.02
+	Test Case ID: 9.03
 	Purpose: “Testing if Null_Unit_ID_Exception is thrown when a null ID is provided”
 	Preconditions: Command exists with Unit_ID set to null
 	Expected Result: Null_Unit_ID_Exception is thrown.
 	*/
     @Test
     public void testNullUnitIDException() {
-        test_object = new Send_Message_To_Operator_Command("2", "Test");
+        test_object = new Send_Message_To_Operator_Command(null, "Test");
         try {
             test_object.Execute();
             Assert.fail("Excepted Null_Unit_ID_Exception");
@@ -85,7 +85,7 @@ public class Send_Message_To_Operator_CommandTest {
     // Testing Constructor Negative Path
     //Test Failed to Compile so this scenario cannot occur. Test Passed.
 	/*
-	Test Case ID: 9.03
+	Test Case ID: 9.05
 	Purpose: “Testing if Send_Message_To_Operator_Command is passed an integer as the Unit_ID, it does not crash”
 	Preconditions: A unit with the ID 10 exists within the system. Send_Message_To_Operator is passed the value 10.
 	Expected Result: A new Send_Message_To_Operator_Command is not constructed and the system does not crash.
@@ -101,7 +101,7 @@ public class Send_Message_To_Operator_CommandTest {
 	*/
 
 	/*
-	Test Case ID: 9.04
+	Test Case ID: 9.06
 	Purpose: “Testing if Send_Message_To_Operator_Command is passed an abnormal Unit_ID it does not crash”
 	Preconditions: The value passed to Unit_ID is the String "123abc###".
 	Expected Result: A new Send_Message_To_Operator_Command is not constructed and the system does not crash.
@@ -118,11 +118,16 @@ public class Send_Message_To_Operator_CommandTest {
     }
 
 	/*
-	Test Case ID: 9.05
+	Test Case ID: 9.07
 	Purpose: “Testing if Send_Message_To_Operator_Command is passed the String "これはテストです" to Message's value the system does not crash and succesfully creates the command"
 	Preconditions: The value passed to Message is the value "これはテストです".
 	Expected Result: A new Send_Message_To_Operator_Command is constructed.
 	*/
+    @Test
+    public void testUnusualMessage() throws Exception {
+        test_object = new Send_Message_To_Operator_Command("1", "これはテストです");
+        test_object.Execute();
+    }
 
 
 }

@@ -8,12 +8,23 @@
 
 package com.company;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 
 public class Toggle_Emergency_CommandTest {
 
+    Toggle_Emergency_Command test_object;
+    Response_Unit_Manager response_unit_manager_object;
+    Response_Unit response_unit_object;
+
+
+    @Before
+    public void setUp(){
+        test_object = new Toggle_Emergency_Command("1");
+        response_unit_manager_object = new Response_Unit_Manager();
+    }
 
     // Testing Constructor Positive Path
 	 /*
@@ -22,14 +33,46 @@ public class Toggle_Emergency_CommandTest {
 	Preconditions: A unit with the ID 10 exists within the system.
 	Expected Result: A new Toggle_Emergency_Command is constructed.
 	*/
+    @Test
+    public void testConstructor() {
+        test_object = new Toggle_Emergency_Command("1");
+    }
 
     // Testing Execute Function
+    	/*
+	Test Case ID: 11.02
+	Purpose: �Testing if Execute successfully completes�
+	Preconditions: Command exists with Unit_ID set to a unit ID exists and emergency is toggled.
+	Expected Result: Execute completes without error.
+	*/
+    @Test
+    public void testSuccessfulExecute() throws Exception{
+        test_object = new Toggle_Emergency_Command("1");
+        response_unit_object = new Response_Unit("1", new Location(90, 90));
+        boolean response_unit_emergency_status = response_unit_object.Emergency_Exists();
+        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        test_object.Execute();
+        Assert.assertEquals(response_unit_manager_object.Response_Unit_Named("1").Emergency_Exists(), !response_unit_emergency_status);
+    }
+
 	/*
 	Test Case ID: 11.01
 	Purpose: �Testing if Null_Unit_ID_Exception is thrown when a null ID is provided�
 	Preconditions: Command exists with Unit_ID set to null
 	Expected Result: Null_Unit_ID_Exception is thrown.
-	*/ 
+	*/
+    @Test
+    public void testNullUnitIDException() throws Exception {
+        test_object = new Toggle_Emergency_Command(null);
+        response_unit_object = new Response_Unit("1", new Location(90, 90));
+        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        try {
+            test_object.Execute();
+            Assert.fail("Excepted Null_Unit_ID_Exception");
+        } catch (Null_Unit_ID_Exception e) {
+            // Passed
+        }
+    }
 	
 	/*
 	Test Case ID: 11.02
@@ -37,19 +80,46 @@ public class Toggle_Emergency_CommandTest {
 	Preconditions: Command exists with Unit_ID set to a unit ID that does not exist within the system "123"
 	Expected Result: No emergencies are toggled and the system does not crash.
 	*/
+    @Test
+    public void testNonExistentUnitIDException() {
+        test_object = new Toggle_Emergency_Command("3");
+        try {
+            test_object.Execute();
+            Assert.fail("Excepted Null_Unit_ID_Exception");
+        } catch (Null_Unit_ID_Exception e) {
+            // Passed
+        }
+    }
 
     // Testing Constructor Negative Path
+    //Test Failed to Compile so this scenario cannot occur. Test Passed.
 	/*
 	Test Case ID: 11.04
 	Purpose: �Testing if Toggle_Emergency_Command is passed an integer as the Unit_ID, it does not crash�
 	Preconditions: A unit with the ID 10 exists within the system. Toggle_Emergency_Command is passed the value 10.
 	Expected Result: A new Toggle_Emergency_Command is not constructed and the system does not crash.
 	*/
-	
-	/*
-	Test Case ID: 11.05
-	Purpose: �Testing if Toggle_Emergency_Command is passed a String which does not represent a Unit_ID it does not crash�
-	Preconditions: The value passed to Unit_ID is the String "123abc###".
-	Expected Result: A new Toggle_Emergency_Command is not constructed and the system does not crash.
-	*/
+    /*
+    @Test
+    public void testIntegerUnitID() throws Exception {
+        test_object = new Toggle_Emergency_Command(10);
+        response_unit_object = new Response_Unit("10", new Location(90, 90));
+        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        test_object.Execute();
+    }
+    */
+
+    /*
+    Test Case ID: 11.06
+    Purpose: “Testing Toggle_Emergency_Command is passed an abnormal Unit_ID it does not crash”
+    Preconditions: The value passed to Unit_ID is the String "123abc###".
+    Expected Result: A new Toggle_Emergency_Command is executed and the system does not crash.
+    */
+    @Test
+    public void testAbnormalUnitID() throws Exception{
+        test_object = new Toggle_Emergency_Command("123abc###");
+        response_unit_object = new Response_Unit("123abc###", new Location(90, 90));
+        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        test_object.Execute();
+    }
 }
