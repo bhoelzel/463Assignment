@@ -22,7 +22,6 @@ public class Toggle_Emergency_CommandTest {
 
     @Before
     public void setUp(){
-        test_object = new Toggle_Emergency_Command("1");
         response_unit_manager_object = new Response_Unit_Manager();
     }
 
@@ -64,8 +63,6 @@ public class Toggle_Emergency_CommandTest {
     @Test
     public void testNullUnitIDException() throws Exception {
         test_object = new Toggle_Emergency_Command(null);
-        response_unit_object = new Response_Unit("1", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
         try {
             test_object.Execute();
             Assert.fail("Excepted Null_Unit_ID_Exception");

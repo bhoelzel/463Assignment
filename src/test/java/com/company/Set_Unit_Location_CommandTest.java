@@ -25,7 +25,6 @@ public class Set_Unit_Location_CommandTest {
     @Before
     public void setUp(){
         location_object = new Location(90, 90);
-        test_object = new Set_Unit_Location_Command("1", location_object);
         response_unit_manager_object = new Response_Unit_Manager();
     }
 
@@ -52,11 +51,12 @@ public class Set_Unit_Location_CommandTest {
     @Test
     public void testSuccessfulExecute() throws Exception{
         location_object = new Location(10, 10);
-        response_unit_object = new Response_Unit("1", new Location(90, 90));
+        response_unit_object = new Response_Unit("2", new Location(90, 90));
         response_unit_manager_object.Add_Response_Unit(response_unit_object);
-        test_object = new Set_Unit_Location_Command("1", location_object);
+        test_object = new Set_Unit_Location_Command("2", location_object);
         test_object.Execute();
-        Assert.assertSame(response_unit_manager_object.Response_Unit_Named("1").Current_Location(), location_object);
+        Assert.assertEquals(response_unit_manager_object.Response_Unit_Named("2").Current_Location().Current_Latitude(), location_object.Current_Latitude(), 0.0);
+        Assert.assertEquals(response_unit_manager_object.Response_Unit_Named("2").Current_Location().Current_Longitude(), location_object.Current_Longitude(), 0.0);
     }
 	/*
 	Test Case ID: 10.03
@@ -139,10 +139,11 @@ public class Set_Unit_Location_CommandTest {
         } catch (Null_Object_Exception ex) {
 
         }
-        response_unit_object = new Response_Unit("1", new Location(90, 90));
+        response_unit_object = new Response_Unit("4", new Location(90, 90));
         response_unit_manager_object.Add_Response_Unit(response_unit_object);
-        test_object = new Set_Unit_Location_Command("1", location_object);
+        test_object = new Set_Unit_Location_Command("4", location_object);
         test_object.Execute();
-        Assert.assertNotSame(response_unit_manager_object.Response_Unit_Named("1").Current_Location(), location_object);
+        Assert.assertNotEquals(response_unit_manager_object.Response_Unit_Named("4").Current_Location().Current_Latitude(), location_object.Current_Latitude(), 0.0);
+        Assert.assertNotEquals(response_unit_manager_object.Response_Unit_Named("4").Current_Location().Current_Longitude(), location_object.Current_Longitude(), 0.0);
     }
 }

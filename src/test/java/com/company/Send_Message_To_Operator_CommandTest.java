@@ -22,7 +22,6 @@ public class Send_Message_To_Operator_CommandTest {
 
     @Before
     public void setUp(){
-        test_object = new Send_Message_To_Operator_Command("1", "Test");
         response_unit_manager_object = new Response_Unit_Manager();
     }
     // Testing Constructor Positive Path
