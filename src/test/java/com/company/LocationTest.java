@@ -11,6 +11,7 @@
 
 package com.company;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.Matchers.*;
@@ -331,9 +332,14 @@ public class LocationTest  {
 //    }
 
     //tearDown used to close the connection or clean up activities
-    public void tearDown() {
+    @After
+    public void tearDown() throws Exception {
         test_object = null;
+
     }
+
+
+
 
 }
 
