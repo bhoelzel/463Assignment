@@ -8,6 +8,7 @@
 
 package com.company;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -145,5 +146,10 @@ public class Set_Unit_Location_CommandTest {
         test_object.Execute();
         Assert.assertNotEquals(response_unit_manager_object.Response_Unit_Named("4").Current_Location().Current_Latitude(), location_object.Current_Latitude(), 0.0);
         Assert.assertNotEquals(response_unit_manager_object.Response_Unit_Named("4").Current_Location().Current_Longitude(), location_object.Current_Longitude(), 0.0);
+    }
+
+    @After
+    public void tearDown() {
+        response_unit_manager_object = null;
     }
 }

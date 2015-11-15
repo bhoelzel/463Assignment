@@ -8,6 +8,7 @@
 
 package com.company;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -137,4 +138,9 @@ public class Set_Unit_Status_CommandTest {
         Assert.assertNotSame(response_unit_manager_object.Response_Unit_Named("1").Status(), status_object);
     }
     */
+
+    @After
+    public void tearDown() {
+        response_unit_manager_object = null;
+    }
 }

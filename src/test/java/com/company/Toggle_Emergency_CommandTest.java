@@ -8,6 +8,7 @@
 
 package com.company;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -118,5 +119,10 @@ public class Toggle_Emergency_CommandTest {
         response_unit_object = new Response_Unit("123abc###", new Location(90, 90));
         response_unit_manager_object.Add_Response_Unit(response_unit_object);
         test_object.Execute();
+    }
+
+    @After
+    public void tearDown() {
+        response_unit_manager_object = null;
     }
 }

@@ -7,9 +7,12 @@
 *******************************************************************************************************/
 package com.company;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
+
+import java.io.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -46,7 +49,17 @@ public class Send_Message_To_Operator_CommandTest {
     @Test
     public void testSuccessfulExecute() throws Exception{
         test_object = new Send_Message_To_Operator_Command("1", "Test");
+        File test_file = new File("test_file.txt");
+        response_unit_object = new Response_Unit("1", new Location(90, 90));
+        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        FileOutputStream test_file_output = new FileOutputStream(test_file, false);
+        FileInputStream test_file_input = new FileInputStream(test_file);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(test_file_input));
+        System.setOut(new PrintStream(test_file_output));
         test_object.Execute();
+        Assert.assertEquals(reader.readLine(), "Message from 1reads Test");
+        test_file_input.close();
+        test_file_output.close();
     }
 
 	/*
@@ -124,9 +137,22 @@ public class Send_Message_To_Operator_CommandTest {
 	*/
     @Test
     public void testUnusualMessage() throws Exception {
-        test_object = new Send_Message_To_Operator_Command("1", "これはテストです");
+        test_object = new Send_Message_To_Operator_Command("4", "これはテストです");
+        File test_file = new File("test_file.txt");
+        response_unit_object = new Response_Unit("4", new Location(90, 90));
+        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        FileOutputStream test_file_output = new FileOutputStream(test_file, false);
+        FileInputStream test_file_input = new FileInputStream(test_file);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(test_file_input));
+        System.setOut(new PrintStream(test_file_output));
         test_object.Execute();
+        Assert.assertEquals(reader.readLine(), "Message from 4reads これはテストです");
+        test_file_input.close();
+        test_file_output.close();
     }
 
-
+    @After
+    public void tearDown() {
+        response_unit_manager_object = null;
+    }
 }
