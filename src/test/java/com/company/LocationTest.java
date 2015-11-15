@@ -18,8 +18,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class LocationTest  {
     //Test parameters used in tests
-    float good_latitude = -80.0f;
-    float good_longitude = -100.0f;
+    static float good_latitude = -80.0f;
+    static float good_longitude = -100.0f;
     Location test_object;
 
     //Positive path constructor test

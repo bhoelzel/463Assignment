@@ -31,7 +31,7 @@ public class Response_Unit_Manager {
     public static void Add_Response_Unit (Response_Unit New_Unit) 
             throws Null_Object_Exception, Duplicate_Item_Exception {
         String Unit_ID = New_Unit.Unit_ID ();
-        
+
         if (New_Unit == null)
             throw new Null_Object_Exception ();
         
