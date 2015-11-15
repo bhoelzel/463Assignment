@@ -226,7 +226,8 @@ public class Response_UnitTest {
         assertThat(Response_Unit_Bad.Current_Location(), is(equalTo("á£ \\uFFFF.深")));
     }
     */
-
+    //TearDown
+    public void tearDown() { Test_Unit=null;}
 }
 
 
