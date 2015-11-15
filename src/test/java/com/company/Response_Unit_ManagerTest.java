@@ -7,8 +7,8 @@
 package com.company;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import sun.org.mozilla.javascript.internal.EcmaError;
 
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,9 +16,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class Response_Unit_ManagerTest {
-    String test_id = "1001";
-    Response_Unit test_response_unit;
-    Response_Unit_Manager test_subject;
+    static String test_id = "1001";
+    static Response_Unit test_response_unit;
+    static Response_Unit_Manager test_subject;
+    //Testing of Location has been completed prior
+    static Location test_location = new Location(-80.0f, -100.0f);
 
     //Positive path constructor test including adding Response_Unit
     /*
@@ -28,16 +30,21 @@ public class Response_Unit_ManagerTest {
                    A valid Response_Unit has been initialized
     Expected Result: Response_Unit_Manager has been initialized with a Response_Unit added
     */
-    @Test
-    @Before
-    public void setUp() throws Exception {
-        //Test
+    @BeforeClass
+    public static void setUpBeforeClass() {        //Test
         test_subject = new Response_Unit_Manager();
-        //Testing of Location has been completed prior
-        Location test_location = new Location(-80.0f, -100.0f);
+
         //Testing of Response_Unit has been completed prior
-        test_response_unit = new Response_Unit(test_id, test_location);
-        test_subject.Add_Response_Unit(test_response_unit);
+        try {
+            test_response_unit = new Response_Unit(test_id, test_location);
+        } catch (Null_Unit_ID_Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            test_subject.Add_Response_Unit(test_response_unit);
+        } catch (Duplicate_Item_Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //Positive path getter tests
@@ -112,38 +119,66 @@ public class Response_Unit_ManagerTest {
     */
     @Test (expected = Duplicate_Item_Exception.class)//Duplicate_Item_Exception not expected.
     public void TestResponseSetWithDuplicateResponseUnit() throws Null_Object_Exception, Duplicate_Item_Exception {
-        //test_response_unit already exist in the
         Response_Unit a_new_unit = test_response_unit;
         test_subject.Add_Response_Unit( a_new_unit );
     }
 
     /*
-    Test Case ID: 6.03
+    Test Case ID: 6.08
     Purpose: “Testing if the New_Unit.Unit_ID is an extreme value and its effect on the program”
     Preconditions: New_Unit.Unit_ID is Integer.MAX_VALUE || Long.MAX_VALUE
     Expected Result: Response_Unit is added to the Response_Unit_DB
     */
+    @Test
+    public void TestResponseSetWithExtreameIdResponseUnit() throws Null_Object_Exception,
+            Duplicate_Item_Exception, Null_Unit_ID_Exception {
+        Response_Unit a_new_unit = new Response_Unit( String.valueOf( Long.MAX_VALUE   ), test_location   );
+        test_subject.Add_Response_Unit( a_new_unit );
+        assertThat(String.valueOf(Long.MAX_VALUE), is(equalTo(a_new_unit.Unit_ID())));
+    }
 
     /*
-    Test Case ID: 6.04
-    Purpose: “Testing if the New_Unit.Unit_ID is Unusual values, the String “á£ \uFFFF.深“ ”
-    Preconditions: New_Unit.Unit_ID is the String “á£ \uFFFF.深“
-    Expected Result: New Response_Unit with Unit_ID=”á£ \uFFFF.深“ is inserted into Response_Unit_DB.
+    Test Case ID: 6.09
+    Purpose: “Testing if the New_Unit.Unit_ID is Unusual values ”
+    Preconditions: New_Unit.Unit_ID exists with unusual id value“
+    Expected Result: New Response_Unit with unusual id value is inserted into Response_Unit_DB.
     */
+    @Test
+    public void TestResponseSetWithUnusualIdResponseUnit() throws Null_Object_Exception,
+            Duplicate_Item_Exception, Null_Unit_ID_Exception {
+        Response_Unit a_new_unit = new Response_Unit( "Some String Val"  , test_location   );
+        test_subject.Add_Response_Unit( a_new_unit );
+        assertThat("Some String Val", is(equalTo(a_new_unit.Unit_ID())));
+    }
 
     /*
-    Test Case ID: 6.05
+    Test Case ID: 6.10
     Purpose: “Testing if the New_Unit.Unit_ID is zero”
     Preconditions: New_Unit.Unit_ID is set to 0 and there is no existing object in db with Unit_ID=0
     Expected Result: New Response_Unit with Unit_ID=0 is inserted into Response_Unit_DB.
     */
+    @Test
+    public void TestResponseSetWithZeroIdResponseUnit() throws Null_Object_Exception,
+            Duplicate_Item_Exception, Null_Unit_ID_Exception {
+        Response_Unit a_new_unit = new Response_Unit( "0"  , test_location   );
+        test_subject.Add_Response_Unit( a_new_unit );
+        assertThat("0", is(equalTo(a_new_unit.Unit_ID())));
+    }
 
     /*
-    Test Case ID: 6.06
+    Test Case ID: 6.11
     Purpose: “Testing if the New_Unit.Unit_ID is negative”
     Preconditions: New_Unit.Unit_ID is set to -1 and there is no existing object in db with Unit_ID=-1
     Expected Result: New Response_Unit with Unit_ID=-1 is inserted into Response_Unit_DB.
     */
+    @Test
+    public void TestResponseSetWithNegativeIdResponseUnit() throws Null_Object_Exception,
+            Duplicate_Item_Exception, Null_Unit_ID_Exception {
+        Response_Unit a_new_unit = new Response_Unit( "-01"  , test_location   );
+        test_subject.Add_Response_Unit( a_new_unit );
+        assertThat("-01", is(equalTo(a_new_unit.Unit_ID())));
+
+    }
 
     /*
     Test Case ID: 6.07
@@ -151,6 +186,13 @@ public class Response_Unit_ManagerTest {
     Preconditions: New_Unit.Unit_ID is set to 3.14 and there is no existing object in db with Unit_ID=3.14
     Expected Result: New Response_Unit with Unit_ID=3.14 is inserted into Response_Unit_DB.
     */
+    @Test
+    public void TestResponseSetWithFloatIdResponseUnit() throws Null_Object_Exception,
+            Duplicate_Item_Exception, Null_Unit_ID_Exception {
+        Response_Unit a_new_unit = new Response_Unit( "3.14"  , test_location   );
+        test_subject.Add_Response_Unit( a_new_unit );
+        assertThat("3.14", is(equalTo(a_new_unit.Unit_ID())));
+    }
 
 }
 
