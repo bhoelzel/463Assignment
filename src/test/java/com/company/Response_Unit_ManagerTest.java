@@ -1,8 +1,9 @@
 /*******************************************************************************************************
  *       UNIT - Reponse_Unit_Manager Test Sequence
  *       Description of test execution
- *       First execution step: Testing Add_Reponse_Unit Positive Path.
- *       Then test Lowest Unit Functions: Response_Unit_Named & Response_Unit_Exists
+ *       Positive path constructor test including adding Response_Unit
+ *       Positive path getter tests
+ *       Negative path setter test
  *******************************************************************************************************/
 package com.company;
 
