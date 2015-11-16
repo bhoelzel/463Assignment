@@ -1,3 +1,10 @@
+/*******************************************************************************************************
+ *       UNIT - Command
+ *       Description of test execution
+ *       First execution step: constructor (Positive path)
+ *       Then test Lowest Unit Functions (getters, setters)
+ *       Then continue constructor (negative path)
+ *******************************************************************************************************/
 package com.company;
 
 

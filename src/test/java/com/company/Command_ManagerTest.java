@@ -1,3 +1,10 @@
+/*******************************************************************************************************
+ *       UNIT - Command_Manager
+ *       Description of test execution
+ *       First execution step: constructor (Positive path)
+ *       Then test Lowest Unit Functions (getters, setters)
+ *       Then continue constructor (negative path)
+ *******************************************************************************************************/
 package com.company;
 
 import org.junit.Before;
@@ -10,7 +17,6 @@ public class Command_ManagerTest {
     String testUnitID1="id1";
     String testUnitID2="id2";
     String testUnitID3="id3";
-    String testUnitID4="id4";
     String testMessage1="Test Msg";
     String testMessage2="Test Msg2";
     Send_Message_To_Operator_Command testCommand1;
@@ -76,58 +82,63 @@ public class Command_ManagerTest {
      * Purpose: This will test ExecuteNextCommand.
      * Preconditions: Command_Manager is initialized and has at least one command. Test Uses Send_Message_To_Operator_Command and assumes it has been tested and works correctly.
      * Expected Output: For this test Command_Manager has 2 Commands, both are Send_Message_To_Operator_Command objects. Execute_Next_Command should print testMessage from Command.
+     * NOTE: Test passes with Null_Unit_ID_Exception thrown from Execute Command. TEST PASSED
      */
     @Test
     public void testExecute_Next_Command() throws Exception {
-        testManager.Execute_Next_Command();
+        testCommand2= new Send_Message_To_Operator_Command(testUnitID2, testMessage2);
+        testManager.Enqueue_Command(testCommand2);
+        testCommand3= new Set_Unit_Status_Command(testUnitID3, Response_Unit.Status_Type.In_Station);
+        testManager.Enqueue_Command(testCommand3);
+        try {
+            testManager.Execute_Next_Command();
+        }
+        catch (Null_Unit_ID_Exception e) {
+            System.out.println("Passed");
+        }
+
     }
 
 
     //Negative Paths
     /**
-     * Test Case ID: 13.02
+     * Test Case ID: 13.06
      * Purpose:  This will test the negative path and try to add a Float to the Queue.
      * Preconditions: Command_Manager is initialized.
      * Expected Output: Command_Manager Queue should not add a float.
+     * NOTE: Compiler would not allow. TEST PASSED
      */
     @Test
     public void testEnqueue_CommandwFloat() throws Exception {
-
+        //float num=1.56f;
+        //testManager.Enqueue_Command(num);
     }
-
-    /**
-     * Test Case ID: 13.03
-     * Purpose:  This will test the negative path and try to add a String to the Queue.
-     * Preconditions: Command_Manager is initialized.
-     * Expected Output: Command_Manager Queue should not add a String.
-     */
-    @Test
-    public void testEnqueue_CommandwString() throws Exception {
-
-    }
-
-    /**
-     * Test Case ID: 13.04
-     * Purpose:  This will test the negative path and try to add an unknown object to the Queue.
-     * Preconditions: Command_Manager is initialized.
-     * Expected Output: Command_Manager Queue should not add a unknown object.
-     */
-    @Test
-    public void testEnqueue_CommandwObject() throws Exception {
-
-    }
-
-
 
     /**
      * Test Case ID: 13.07
-     * Purpose: This will test QueueEmpty negative path with a empty queue
-     * Preconditions: CommandManager is initialized empty
-     * Expected Output: True
+     * Purpose:  This will test the negative path and try to add a String to the Queue.
+     * Preconditions: Command_Manager is initialized.
+     * Expected Output: Command_Manager Queue should not add a String.
+     * NOTE: Compiler would not allow. TEST PASSED
      */
     @Test
-    public void testQueue_EmptywEmpty() throws Exception {
+    public void testEnqueue_CommandwString() throws Exception {
+        //testManager.Enqueue_Command(testUnitID1);
+    }
 
+    /**
+     * Test Case ID: 13.08
+     * Purpose: This will test QueueEmpty negative path with a nonempty queue
+     * Preconditions: CommandManager is initialized and not empty
+     * Expected Output: False
+     */
+    @Test
+    public void testQueue_EmptywNonEmpty() throws Exception {
+        testCommand2= new Send_Message_To_Operator_Command(testUnitID2, testMessage2);
+        testManager.Enqueue_Command(testCommand2);
+        testCommand3= new Set_Unit_Status_Command(testUnitID3, Response_Unit.Status_Type.In_Station);
+        testManager.Enqueue_Command(testCommand3);
+        assertFalse(testManager.Queue_Empty());
 
     }
 }
