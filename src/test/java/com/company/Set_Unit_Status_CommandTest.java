@@ -17,13 +17,15 @@ import org.junit.Test;
 public class Set_Unit_Status_CommandTest {
 
     Set_Unit_Status_Command test_object;
-    Response_Unit_Manager response_unit_manager_object;
     Response_Unit response_unit_object;
 
 
     @Before
-    public void setUp(){
-        response_unit_manager_object = new Response_Unit_Manager();
+    public void setUp() throws Exception{
+        if (Response_Unit_Manager.Response_Unit_Exists("3") == false) {
+            response_unit_object = new Response_Unit("3", new Location(90, 90));
+            Response_Unit_Manager.Add_Response_Unit(response_unit_object);
+        }
     }
     // Testing Constructor Positive Path
 	/*
@@ -34,7 +36,7 @@ public class Set_Unit_Status_CommandTest {
 	*/
     @Test
     public void testConstructor() {
-        test_object = new Set_Unit_Status_Command("1", Response_Unit.Status_Type.In_Station);
+        test_object = new Set_Unit_Status_Command("3", Response_Unit.Status_Type.In_Station);
     }
 
     // Testing Execute Function
@@ -47,11 +49,9 @@ public class Set_Unit_Status_CommandTest {
     @Test
     public void testSuccessfulExecute() throws Exception{
         Response_Unit.Status_Type status_object = Response_Unit.Status_Type.Not_In_Service;
-        test_object = new Set_Unit_Status_Command("1", status_object);
-        response_unit_object = new Response_Unit("1", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        test_object = new Set_Unit_Status_Command("3", status_object);
         test_object.Execute();
-        Assert.assertSame(response_unit_manager_object.Response_Unit_Named("1").Status(), status_object);
+        Assert.assertSame(Response_Unit_Manager.Response_Unit_Named("3").Status(), status_object);
     }
 
     /*
@@ -74,12 +74,12 @@ public class Set_Unit_Status_CommandTest {
 	/*
 	Test Case ID: 8.04
 	Purpose: �Testing if provided Unit_ID does not exist�
-	Preconditions: Command exists with Unit_ID set to a unit ID that does not exist within the system "3"
+	Preconditions: Command exists with Unit_ID set to a unit ID that does not exist within the system "123"
 	Expected Result: No units have their status changed and the system does not crash.
 	*/
     @Test
     public void testNonExistentUnitIDException() {
-        test_object = new Set_Unit_Status_Command("3", Response_Unit.Status_Type.On_Scene);
+        test_object = new Set_Unit_Status_Command("123", Response_Unit.Status_Type.On_Scene);
         try {
             test_object.Execute();
             Assert.fail("Excepted Null_Unit_ID_Exception");
@@ -101,7 +101,7 @@ public class Set_Unit_Status_CommandTest {
     public void testIntegerUnitID() throws Exception {
         test_object = new Set_Unit_Status_Command(10, Response_Unit.Status_Type.On_Scene);
         response_unit_object = new Response_Unit("10", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        Response_Unit_Manager.Add_Response_Unit(response_unit_object);
         test_object.Execute();
     }
     */
@@ -115,9 +115,12 @@ public class Set_Unit_Status_CommandTest {
     @Test
     public void testAbnormalUnitID() throws Exception{
         test_object = new Set_Unit_Status_Command("123abc###", Response_Unit.Status_Type.On_Scene);
-        response_unit_object = new Response_Unit("123abc###", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        if (Response_Unit_Manager.Response_Unit_Exists("123abc###") == false) {
+            response_unit_object = new Response_Unit("123abc###", new Location(90, 90));
+            Response_Unit_Manager.Add_Response_Unit(response_unit_object);
+        }
         test_object.Execute();
+        Assert.assertEquals(Response_Unit_Manager.Response_Unit_Named("123abc###").Status(), Response_Unit.Status_Type.On_Scene);
     }
 
     //Test Failed to Compile so this scenario cannot occur. Test Passed.
@@ -131,16 +134,10 @@ public class Set_Unit_Status_CommandTest {
     @Test
     public void testSuccessfulExecute() throws Exception{
         Response_Unit.Status_Type status_object = 5;
-        response_unit_object = new Response_Unit("1", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
-        test_object = new Set_Unit_Location_Command("1", status_object);
+        test_object = new Set_Unit_Location_Command("3", status_object);
         test_object.Execute();
-        Assert.assertNotSame(response_unit_manager_object.Response_Unit_Named("1").Status(), status_object);
+        Assert.assertNotSame(response_unit_manager_object.Response_Unit_Named("3").Status(), status_object);
     }
     */
 
-    @After
-    public void tearDown() {
-        response_unit_manager_object = null;
-    }
 }

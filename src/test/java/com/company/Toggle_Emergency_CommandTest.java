@@ -17,13 +17,15 @@ import org.junit.Test;
 public class Toggle_Emergency_CommandTest {
 
     Toggle_Emergency_Command test_object;
-    Response_Unit_Manager response_unit_manager_object;
     Response_Unit response_unit_object;
 
 
     @Before
-    public void setUp(){
-        response_unit_manager_object = new Response_Unit_Manager();
+    public void setUp() throws Exception{
+        if (Response_Unit_Manager.Response_Unit_Exists("4") == false) {
+            response_unit_object = new Response_Unit("4", new Location(90, 90));
+            Response_Unit_Manager.Add_Response_Unit(response_unit_object);
+        }
     }
 
     // Testing Constructor Positive Path
@@ -35,7 +37,7 @@ public class Toggle_Emergency_CommandTest {
 	*/
     @Test
     public void testConstructor() {
-        test_object = new Toggle_Emergency_Command("1");
+        test_object = new Toggle_Emergency_Command("4");
     }
 
     // Testing Execute Function
@@ -47,12 +49,10 @@ public class Toggle_Emergency_CommandTest {
 	*/
     @Test
     public void testSuccessfulExecute() throws Exception{
-        test_object = new Toggle_Emergency_Command("1");
-        response_unit_object = new Response_Unit("1", new Location(90, 90));
-        boolean response_unit_emergency_status = response_unit_object.Emergency_Exists();
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        test_object = new Toggle_Emergency_Command("4");
+        boolean response_unit_emergency_status = Response_Unit_Manager.Response_Unit_Named("4").Emergency_Exists();
         test_object.Execute();
-        Assert.assertEquals(response_unit_manager_object.Response_Unit_Named("1").Emergency_Exists(), !response_unit_emergency_status);
+        Assert.assertEquals(Response_Unit_Manager.Response_Unit_Named("4").Emergency_Exists(), !response_unit_emergency_status);
     }
 
 	/*
@@ -80,7 +80,7 @@ public class Toggle_Emergency_CommandTest {
 	*/
     @Test
     public void testNonExistentUnitIDException() {
-        test_object = new Toggle_Emergency_Command("3");
+        test_object = new Toggle_Emergency_Command("123");
         try {
             test_object.Execute();
             Assert.fail("Excepted Null_Unit_ID_Exception");
@@ -102,7 +102,7 @@ public class Toggle_Emergency_CommandTest {
     public void testIntegerUnitID() throws Exception {
         test_object = new Toggle_Emergency_Command(10);
         response_unit_object = new Response_Unit("10", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        Response_Unit_Manager.Add_Response_Unit(response_unit_object);
         test_object.Execute();
     }
     */
@@ -116,13 +116,13 @@ public class Toggle_Emergency_CommandTest {
     @Test
     public void testAbnormalUnitID() throws Exception{
         test_object = new Toggle_Emergency_Command("123abc###");
-        response_unit_object = new Response_Unit("123abc###", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        boolean response_unit_emergency_status = Response_Unit_Manager.Response_Unit_Named("4").Emergency_Exists();
+        if (Response_Unit_Manager.Response_Unit_Exists("123abc###") == false) {
+            response_unit_object = new Response_Unit("123abc###", new Location(90, 90));
+            Response_Unit_Manager.Add_Response_Unit(response_unit_object);
+        }
         test_object.Execute();
+        Assert.assertEquals(Response_Unit_Manager.Response_Unit_Named("123abc###").Emergency_Exists(), !response_unit_emergency_status);
     }
 
-    @After
-    public void tearDown() {
-        response_unit_manager_object = null;
-    }
 }

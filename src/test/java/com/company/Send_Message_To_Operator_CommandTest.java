@@ -19,13 +19,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class Send_Message_To_Operator_CommandTest {
 
     Send_Message_To_Operator_Command test_object;
-    Response_Unit_Manager response_unit_manager_object;
     Response_Unit response_unit_object;
 
 
     @Before
-    public void setUp(){
-        response_unit_manager_object = new Response_Unit_Manager();
+    public void setUp() throws Exception{
+        if (Response_Unit_Manager.Response_Unit_Exists("1") == false) {
+            response_unit_object = new Response_Unit("1", new Location(90, 90));
+            Response_Unit_Manager.Add_Response_Unit(response_unit_object);
+        }
     }
     // Testing Constructor Positive Path
 	/*
@@ -35,8 +37,9 @@ public class Send_Message_To_Operator_CommandTest {
 	Expected Result: A new Send_Message_To_Operator_Command is constructed.
 	*/
     @Test
-    public void testConstructor() {
+    public void testConstructor(){
         test_object = new Send_Message_To_Operator_Command("1", "Test");
+
     }
 
     // Testing Execute Function
@@ -50,8 +53,6 @@ public class Send_Message_To_Operator_CommandTest {
     public void testSuccessfulExecute() throws Exception{
         test_object = new Send_Message_To_Operator_Command("1", "Test");
         File test_file = new File("test_file.txt");
-        response_unit_object = new Response_Unit("1", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
         FileOutputStream test_file_output = new FileOutputStream(test_file, false);
         FileInputStream test_file_input = new FileInputStream(test_file);
         BufferedReader reader = new BufferedReader(new InputStreamReader(test_file_input));
@@ -79,25 +80,10 @@ public class Send_Message_To_Operator_CommandTest {
         }
     }
 
-    /*
-	Test Case ID: 9.04
-	Purpose: “Testing if Send_Message_To_Operator_Command is passed an abnormal Unit_ID it does not crash”
-	Preconditions: The value passed to Unit_ID is the String "123abc###".
-	Expected Result: A new Send_Message_To_Operator_Command is executed and the system does not crash.
-	*/
-    @Test
-    public void testAbnormalUnitID() throws Exception{
-        test_object = new Send_Message_To_Operator_Command("123abc###", "Test");
-        response_unit_object = new Response_Unit("123abc###", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
-        test_object.Execute();
-    }
-
-
     // Testing Constructor Negative Path
     //Test Failed to Compile so this scenario cannot occur. Test Passed.
 	/*
-	Test Case ID: 9.05
+	Test Case ID: 9.04
 	Purpose: “Testing if Send_Message_To_Operator_Command is passed an integer as the Unit_ID, it does not crash”
 	Preconditions: A unit with the ID 10 exists within the system. Send_Message_To_Operator is passed the value 10.
 	Expected Result: A new Send_Message_To_Operator_Command is not constructed and the system does not crash.
@@ -107,13 +93,13 @@ public class Send_Message_To_Operator_CommandTest {
     public void testIntegerUnitID() throws Exception {
         test_object = new Send_Message_To_Operator_Command(10, "Test");
         response_unit_object = new Response_Unit("10", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
+        Response_Unit_Manager.Add_Response_Unit(response_unit_object);
         test_object.Execute();
     }
 	*/
 
 	/*
-	Test Case ID: 9.06
+	Test Case ID: 9.05
 	Purpose: “Testing if Send_Message_To_Operator_Command is passed an abnormal Unit_ID it does not crash”
 	Preconditions: The value passed to Unit_ID is the String "123abc###".
 	Expected Result: A new Send_Message_To_Operator_Command is not constructed and the system does not crash.
@@ -130,29 +116,23 @@ public class Send_Message_To_Operator_CommandTest {
     }
 
 	/*
-	Test Case ID: 9.07
+	Test Case ID: 9.06
 	Purpose: “Testing if Send_Message_To_Operator_Command is passed the String "これはテストです" to Message's value the system does not crash and succesfully creates the command"
 	Preconditions: The value passed to Message is the value "これはテストです".
 	Expected Result: A new Send_Message_To_Operator_Command is constructed.
 	*/
     @Test
     public void testUnusualMessage() throws Exception {
-        test_object = new Send_Message_To_Operator_Command("4", "これはテストです");
+        test_object = new Send_Message_To_Operator_Command("1", "これはテストです");
         File test_file = new File("test_file.txt");
-        response_unit_object = new Response_Unit("4", new Location(90, 90));
-        response_unit_manager_object.Add_Response_Unit(response_unit_object);
         FileOutputStream test_file_output = new FileOutputStream(test_file, false);
         FileInputStream test_file_input = new FileInputStream(test_file);
         BufferedReader reader = new BufferedReader(new InputStreamReader(test_file_input));
         System.setOut(new PrintStream(test_file_output));
         test_object.Execute();
-        Assert.assertEquals(reader.readLine(), "Message from 4reads これはテストです");
+        Assert.assertEquals(reader.readLine(), "Message from 1reads これはテストです");
         test_file_input.close();
         test_file_output.close();
     }
 
-    @After
-    public void tearDown() {
-        response_unit_manager_object = null;
-    }
 }
