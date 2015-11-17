@@ -58,7 +58,7 @@ public class Send_Message_To_Operator_CommandTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(test_file_input));
         System.setOut(new PrintStream(test_file_output));
         test_object.Execute();
-        Assert.assertEquals(reader.readLine(), "Message from 1reads Test");
+        Assert.assertEquals(reader.readLine(), "Message from 1 reads Test");
         test_file_input.close();
         test_file_output.close();
     }
@@ -130,7 +130,7 @@ public class Send_Message_To_Operator_CommandTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(test_file_input));
         System.setOut(new PrintStream(test_file_output));
         test_object.Execute();
-        Assert.assertEquals(reader.readLine(), "Message from 1reads これはテストです");
+        Assert.assertEquals(reader.readLine(), "Message from 1 reads これはテストです");
         test_file_input.close();
         test_file_output.close();
     }
