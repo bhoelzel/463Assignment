@@ -24,8 +24,8 @@ public class CommandTest {
     float testFloat = 1.0f;
     String testString = "Test";
     int testInt = 1;
-    int testIntXLarge = 2147483647;
-    int testIntXSmall = -2147483648;
+    int testIntXLarge = Integer.MAX_VALUE;
+    int testIntXSmall = Integer.MIN_VALUE;
     int testPriorityHigh=10;
     int testPriorityLow=1;
 

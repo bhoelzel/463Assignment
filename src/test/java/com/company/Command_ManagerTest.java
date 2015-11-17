@@ -7,8 +7,11 @@
  *******************************************************************************************************/
 package com.company;
 
+import jdk.nashorn.internal.ir.WhileNode;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.lang.model.type.NullType;
 
 import static org.junit.Assert.*;
 
@@ -139,6 +142,58 @@ public class Command_ManagerTest {
         testCommand3= new Set_Unit_Status_Command(testUnitID3, Response_Unit.Status_Type.In_Station);
         testManager.Enqueue_Command(testCommand3);
         assertFalse(testManager.Queue_Empty());
+
+    }
+
+    /**
+     * Test Case ID: 13.09
+     * Purpose:  This will test the Next_Command() function with an Empty Command_Manager
+     * Preconditions: Command_Manager is initialized.
+     * Expected Output: Command_Manager Queue should not return anything
+     * NOTE: Test Failed
+     */
+    @Test
+    public void testNext_CommandwEmpty() throws Exception {
+        while(testManager.Queue_Empty()==Boolean.FALSE)
+            testManager.Next_Command();
+        Command command=testManager.Next_Command();
+        assertNotNull(command);
+    }
+
+    /**
+     * Test Case ID: 13.10
+     * Purpose:  This will test the Execute_Next_Command() function with an Empty Command_Manager
+     * Preconditions: Command_Manager is initialized.
+     * Expected Output: Command_Manager Queue should not try to Execute because the queue is empty. Test fails with NullPointerException
+     * NOTE: Test Failed
+     */
+    @Test
+    public void testExecute_Next_CommandwEmpty() throws Exception {
+        while(testManager.Queue_Empty()==Boolean.FALSE)
+            testManager.Next_Command();
+        try{
+            testManager.Execute_Next_Command();
+        }catch (NullPointerException e){
+            System.out.println("Failed");
+        }
+
+    }
+
+    /**
+     * Test Case ID: 13.11
+     * Purpose:  This will test the Enqueue_Command() function with a null command
+     * Preconditions: Command_Manager is initialized.
+     * Expected Output: Command_Manager Queue should not add null command. Test fails with NullPointerException
+     * NOTE: Test Failed
+     */
+    @Test
+    public void testEnqueue_CommandwNull() throws Exception {
+        Command command= null;
+        try{
+            testManager.Enqueue_Command(command);
+        }catch (NullPointerException e){
+            System.out.println("Failed");
+        }
 
     }
 }
