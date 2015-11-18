@@ -58,6 +58,7 @@ public class Set_Unit_Location_CommandTest {
         Assert.assertEquals(Response_Unit_Manager.Response_Unit_Named("2").Current_Location().Current_Latitude(), location_object.Current_Latitude(), 0.0);
         Assert.assertEquals(Response_Unit_Manager.Response_Unit_Named("2").Current_Location().Current_Longitude(), location_object.Current_Longitude(), 0.0);
     }
+
 	/*
 	Test Case ID: 10.03
 	Purpose: �Testing if Null_Unit_ID_Exception is thrown when a null ID is provided�
@@ -92,8 +93,6 @@ public class Set_Unit_Location_CommandTest {
         }
     }
 
-
-
     // Testing Constructor Negative Path
     /*
 	Test Case ID: 10.05
@@ -112,26 +111,9 @@ public class Set_Unit_Location_CommandTest {
         Assert.assertEquals(Response_Unit_Manager.Response_Unit_Named("123abc###").Current_Location().Current_Latitude(), location_object.Current_Latitude(), 0.0);
         Assert.assertEquals(Response_Unit_Manager.Response_Unit_Named("123abc###").Current_Location().Current_Longitude(), location_object.Current_Longitude(), 0.0);
     }
-
-    //Test Failed to Compile so this scenario cannot occur. Test Passed.
-	/*
-	Test Case ID: 10.06
-	Purpose: �Testing if Set_Unit_Location_Command is passed an integer as the Unit_ID it does not crash�
-	Preconditions: A unit with the ID 10 exists within the system. Set_Unit_Location is passed the value 10.
-	Expected Result: A new Set_Unit_Location_Command is constructed and the system does not crash.
-	*/
-    /*
-    @Test
-    public void testIntegerUnitID() throws Exception {
-        test_object = new Set_Unit_Location_Command(10, "Test");
-        response_unit_object = new Response_Unit("10", new Location(90, 90));
-        Response_Unit_Manager.Add_Response_Unit(response_unit_object);
-        test_object.Execute();
-    }
-    */
 	
 	/*
-	Test Case ID: 10.07
+	Test Case ID: 10.06
 	Purpose: �Testing if Set_Unit_Location_Command is passed an invalid location it does not crash�
 	Preconditions: The value passed to Update_Location is invalid location with a longitude of -1000 and latitude of -1000.
 	Expected Result: A new Set_Unit_Location_Command is not constructed and the system does not crash.
@@ -149,5 +131,21 @@ public class Set_Unit_Location_CommandTest {
         Assert.assertNotEquals(Response_Unit_Manager.Response_Unit_Named("2").Current_Location().Current_Latitude(), location_object.Current_Latitude(), 0.0);
         Assert.assertNotEquals(Response_Unit_Manager.Response_Unit_Named("2").Current_Location().Current_Longitude(), location_object.Current_Longitude(), 0.0);
     }
+
+	/*
+	Test Case ID: 10.07
+	Purpose: �Testing if Set_Unit_Location_Command is passed an integer as the Unit_ID it does not crash�
+	Preconditions: A unit with the ID 10 exists within the system. Set_Unit_Location is passed the value 10.
+	Expected Result: A new Set_Unit_Location_Command is constructed and the system does not crash.
+	*/
+    /* Note: Test failed to compile, This scenario cannot occur.  Test PASSED
+    @Test
+    public void testIntegerUnitID() throws Exception {
+        test_object = new Set_Unit_Location_Command(10, "Test");
+        response_unit_object = new Response_Unit("10", new Location(90, 90));
+        Response_Unit_Manager.Add_Response_Unit(response_unit_object);
+        test_object.Execute();
+    }
+    */
 
 }

@@ -81,25 +81,8 @@ public class Send_Message_To_Operator_CommandTest {
     }
 
     // Testing Constructor Negative Path
-    //Test Failed to Compile so this scenario cannot occur. Test Passed.
 	/*
 	Test Case ID: 9.04
-	Purpose: “Testing if Send_Message_To_Operator_Command is passed an integer as the Unit_ID, it does not crash”
-	Preconditions: A unit with the ID 10 exists within the system. Send_Message_To_Operator is passed the value 10.
-	Expected Result: A new Send_Message_To_Operator_Command is not constructed and the system does not crash.
-	*/
-    /*
-    @Test
-    public void testIntegerUnitID() throws Exception {
-        test_object = new Send_Message_To_Operator_Command(10, "Test");
-        response_unit_object = new Response_Unit("10", new Location(90, 90));
-        Response_Unit_Manager.Add_Response_Unit(response_unit_object);
-        test_object.Execute();
-    }
-	*/
-
-	/*
-	Test Case ID: 9.05
 	Purpose: “Testing if Send_Message_To_Operator_Command is passed an abnormal Unit_ID it does not crash”
 	Preconditions: The value passed to Unit_ID is the String "123abc###".
 	Expected Result: A new Send_Message_To_Operator_Command is not constructed and the system does not crash.
@@ -116,7 +99,7 @@ public class Send_Message_To_Operator_CommandTest {
     }
 
 	/*
-	Test Case ID: 9.06
+	Test Case ID: 9.05
 	Purpose: “Testing if Send_Message_To_Operator_Command is passed the String "これはテストです" to Message's value the system does not crash and succesfully creates the command"
 	Preconditions: The value passed to Message is the value "これはテストです".
 	Expected Result: A new Send_Message_To_Operator_Command is constructed.
@@ -135,4 +118,19 @@ public class Send_Message_To_Operator_CommandTest {
         test_file_output.close();
     }
 
+    /*
+	Test Case ID: 9.06
+	Purpose: “Testing if Send_Message_To_Operator_Command is passed an integer as the Unit_ID, it does not crash”
+	Preconditions: A unit with the ID 10 exists within the system. Send_Message_To_Operator is passed the value 10.
+	Expected Result: A new Send_Message_To_Operator_Command is not constructed and the system does not crash.
+	*/
+    /* Note: Test failed to compile, This scenario cannot occur.  Test PASSED
+    @Test
+    public void testIntegerUnitID() throws Exception {
+        test_object = new Send_Message_To_Operator_Command(10, "Test");
+        response_unit_object = new Response_Unit("10", new Location(90, 90));
+        Response_Unit_Manager.Add_Response_Unit(response_unit_object);
+        test_object.Execute();
+    }
+	*/
 }
