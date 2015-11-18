@@ -33,7 +33,7 @@ public class Response_Unit_ManagerTest {
     Expected Result: Response_Unit_Manager has been initialized with a Response_Unit added
     */
     @BeforeClass
-    public static void setUpBeforeClass() {        //Test
+    public static void setUpBeforeClass() {
         test_subject = new Response_Unit_Manager();
 
         //Testing of Response_Unit has been completed prior
