@@ -24,7 +24,7 @@ public class Set_Unit_Location_CommandTest {
 
     @Before
     public void setUp()throws Exception{
-        location_object = new Location(90, 90);
+
         if (Response_Unit_Manager.Response_Unit_Exists("2") == false) {
             response_unit_object = new Response_Unit("2", new Location(90, 90));
             Response_Unit_Manager.Add_Response_Unit(response_unit_object);
@@ -102,6 +102,7 @@ public class Set_Unit_Location_CommandTest {
 	*/
     @Test
     public void testAbnormalUnitID() throws Exception{
+        location_object = new Location(90, 90);
         test_object = new Set_Unit_Location_Command("123abc###", location_object);
         if (Response_Unit_Manager.Response_Unit_Exists("123abc###") == false) {
             response_unit_object = new Response_Unit("123abc###", new Location(90, 90));
@@ -120,6 +121,7 @@ public class Set_Unit_Location_CommandTest {
 	*/
     @Test
     public void testInvalidLocation() throws Exception{
+        location_object = new Location(50, 50);
         try {
             location_object = new Location(-1000, -1000);
             Assert.fail("Excepted Null_Object_Exception");
@@ -128,8 +130,8 @@ public class Set_Unit_Location_CommandTest {
         }
         test_object = new Set_Unit_Location_Command("2", location_object);
         test_object.Execute();
-        Assert.assertNotEquals(Response_Unit_Manager.Response_Unit_Named("2").Current_Location().Current_Latitude(), location_object.Current_Latitude(), 0.0);
-        Assert.assertNotEquals(Response_Unit_Manager.Response_Unit_Named("2").Current_Location().Current_Longitude(), location_object.Current_Longitude(), 0.0);
+        Assert.assertEquals(Response_Unit_Manager.Response_Unit_Named("2").Current_Location().Current_Latitude(), location_object.Current_Latitude(), 0.0);
+        Assert.assertEquals(Response_Unit_Manager.Response_Unit_Named("2").Current_Location().Current_Longitude(), location_object.Current_Longitude(), 0.0);
     }
 
 	/*
