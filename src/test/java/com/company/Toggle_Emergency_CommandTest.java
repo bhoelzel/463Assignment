@@ -90,25 +90,8 @@ public class Toggle_Emergency_CommandTest {
     }
 
     // Testing Constructor Negative Path
-    //Test Failed to Compile so this scenario cannot occur. Test Passed.
-	/*
-	Test Case ID: 11.05
-	Purpose: �Testing if Toggle_Emergency_Command is passed an integer as the Unit_ID, it does not crash�
-	Preconditions: A unit with the ID 10 exists within the system. Toggle_Emergency_Command is passed the value 10.
-	Expected Result: A new Toggle_Emergency_Command is not constructed and the system does not crash.
-	*/
     /*
-    @Test
-    public void testIntegerUnitID() throws Exception {
-        test_object = new Toggle_Emergency_Command(10);
-        response_unit_object = new Response_Unit("10", new Location(90, 90));
-        Response_Unit_Manager.Add_Response_Unit(response_unit_object);
-        test_object.Execute();
-    }
-    */
-
-    /*
-    Test Case ID: 11.06
+    Test Case ID: 11.05
     Purpose: “Testing Toggle_Emergency_Command is passed an abnormal Unit_ID it does not crash”
     Preconditions: The value passed to Unit_ID is the String "123abc###".
     Expected Result: A new Toggle_Emergency_Command is executed and the system does not crash.
@@ -124,5 +107,21 @@ public class Toggle_Emergency_CommandTest {
         test_object.Execute();
         Assert.assertEquals(Response_Unit_Manager.Response_Unit_Named("123abc###").Emergency_Exists(), !response_unit_emergency_status);
     }
+
+	/*
+	Test Case ID: 11.06
+	Purpose: �Testing if Toggle_Emergency_Command is passed an integer as the Unit_ID, it does not crash�
+	Preconditions: A unit with the ID 10 exists within the system. Toggle_Emergency_Command is passed the value 10.
+	Expected Result: A new Toggle_Emergency_Command is not constructed and the system does not crash.
+	*/
+    /* Note: Test failed to compile, This scenario cannot occur.  Test PASSED
+    @Test
+    public void testIntegerUnitID() throws Exception {
+        test_object = new Toggle_Emergency_Command(10);
+        response_unit_object = new Response_Unit("10", new Location(90, 90));
+        Response_Unit_Manager.Add_Response_Unit(response_unit_object);
+        test_object.Execute();
+    }
+    */
 
 }

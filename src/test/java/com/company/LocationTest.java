@@ -331,7 +331,6 @@ public class LocationTest  {
 //        Location test = new Location();
 //    }
 
-    //tearDown used to close the connection or clean up activities
     @After
     public void tearDown() throws Exception {
         test_object = null;

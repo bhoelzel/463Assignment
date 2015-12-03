@@ -89,25 +89,8 @@ public class Set_Unit_Status_CommandTest {
     }
 
     // Testing Constructor Negative Path
-    //Test Failed to Compile so this scenario cannot occur. Test Passed.
-	/*
-	Test Case ID: 8.05
-	Purpose: �Testing if Set_Unit_Status_Command is passed an integer as the Unit_ID, it does not crash�
-	Preconditions: A unit with the ID 10 exists within the system. Set_Unit_Status_Command is passed the value 10.
-	Expected Result: A new Set_Unit_Status_Command is not constructed and the system does not crash.
-	*/
     /*
-    @Test
-    public void testIntegerUnitID() throws Exception {
-        test_object = new Set_Unit_Status_Command(10, Response_Unit.Status_Type.On_Scene);
-        response_unit_object = new Response_Unit("10", new Location(90, 90));
-        Response_Unit_Manager.Add_Response_Unit(response_unit_object);
-        test_object.Execute();
-    }
-    */
-
-    /*
-    Test Case ID: 8.06
+    Test Case ID: 8.05
     Purpose: “Testing if Set_Unit_Status_Command is passed an abnormal Unit_ID it does not crash”
     Preconditions: The value passed to Unit_ID is the String "123abc###".
     Expected Result: A new Set_Unit_Status_Command is executed and the system does not crash.
@@ -123,14 +106,29 @@ public class Set_Unit_Status_CommandTest {
         Assert.assertEquals(Response_Unit_Manager.Response_Unit_Named("123abc###").Status(), Response_Unit.Status_Type.On_Scene);
     }
 
-    //Test Failed to Compile so this scenario cannot occur. Test Passed.
+    /*
+	Test Case ID: 8.06
+	Purpose: �Testing if Set_Unit_Status_Command is passed an integer as the Unit_ID, it does not crash�
+	Preconditions: A unit with the ID 10 exists within the system. Set_Unit_Status_Command is passed the value 10.
+	Expected Result: A new Set_Unit_Status_Command is not constructed and the system does not crash.
+	*/
+    /* Note: Test failed to compile, This scenario cannot occur.  Test PASSED
+    @Test
+    public void testIntegerUnitID() throws Exception {
+        test_object = new Set_Unit_Status_Command(10, Response_Unit.Status_Type.On_Scene);
+        response_unit_object = new Response_Unit("10", new Location(90, 90));
+        Response_Unit_Manager.Add_Response_Unit(response_unit_object);
+        test_object.Execute();
+    }
+    */
+
 	/*
 	Test Case ID: 8.07
 	Purpose: �Testing if Set_Unit_Status_Command is passed an invalid Status_Type�
 	Preconditions: The value passed to Status_Type is the value 5.
 	Expected Result: A new Set_Unit_Status_Command is not constructed and the system does not crash.
 	*/
-    /*
+    /* Note: Test failed to compile, This scenario cannot occur.  Test PASSED
     @Test
     public void testSuccessfulExecute() throws Exception{
         Response_Unit.Status_Type status_object = 5;
