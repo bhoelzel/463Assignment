@@ -1,0 +1,23 @@
+Title:
+Execute_Next_Command is allowed on empty Command_Manager
+
+Description:
+Execute_Next_Command takes the Command at the top of the Queue and executes it.
+The function itself does not check if the queue is empty before running the execute function and a NullPointerException
+will be called if the queue is empty and could potentially cause the overall program to fail.
+Calling Execute_Next_Command on an empty Command_Manager will produce this behavior.
+The function should first check if Next_Command() is null or if(Queue_Empty) before
+calling Execute or catch the exception.
+
+Performance Effect:
+Critical- not at the very least catching the exception can potentially lead to a crash.
+
+Requirement Number:
+None
+
+Notes:
+Proposed solutions-
+1.First check to see if queue is empty and throw an exception if it is empty.
+2. use a try-catch block when calling execute.
+
+See Command_ManagerTest Test Case ID: 13.10
